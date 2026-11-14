@@ -243,10 +243,12 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
 .tinner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 0 clamp(24px, 7vw, 110px); max-width: 760px; }
 .tkicker { font-family: "Cinzel", var(--fd); letter-spacing: .32em; font-size: 12.5px; color: #c8a35a; font-weight: 700; animation: rise 1.2s .1s both; }
 .tkicker span { color: #8a6d3a; margin: 0 .3em; }
-.tlogo { margin: 0; font-family: var(--fd); font-weight: 900; line-height: .98; display: flex; flex-direction: column; letter-spacing: -.01em; animation: rise 1.4s .25s both; }
-.tlogo .l2 { position: relative; align-self: flex-start; font-size: clamp(96px, 18vw, 220px); letter-spacing: .04em; }
-.tlogo .lg { position: absolute; left: 0; top: 0; color: #6e2410; text-shadow: 0 0 22px rgba(255, 110, 40, .55), 0 0 48px rgba(255, 90, 30, .28), 0 3px 0 rgba(0, 0, 0, .65); animation: flick 5s 2s infinite; pointer-events: none; }
-.tlogo .lt { position: relative; display: block; background: linear-gradient(180deg, #fff6e2 0%, #f6cf86 38%, #e08a3c 66%, #9e3218 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+.tlogo { margin: 0; font-family: var(--fd); font-weight: 900; line-height: .98; display: flex; flex-direction: column; letter-spacing: -.01em; align-items: flex-start; animation: rise 1.4s .25s both; }
+.tlogo .tlsvg { display: block; height: clamp(96px, 18vw, 220px); width: auto; aspect-ratio: 412 / 212; max-width: 100%; overflow: visible; }
+.tlogo text { font-family: var(--fd); font-weight: 900; font-size: 200px; }
+.tlogo .tlglow text { fill: #ff6a28; opacity: .5; }
+.tlogo .tlglow { animation: flick 5s 2s infinite; }
+.tlogo .tlshadow { fill: #000; opacity: .6; }
 .tsub { font-family: "Cinzel", serif; letter-spacing: .42em; font-size: clamp(11px, 1.3vw, 14px); color: #b7aa92; animation: rise 1.2s .5s both; }
 .tsub span { color: #e0904a; margin-left: .8em; letter-spacing: .25em; }
 .tmenu { display: grid; gap: 4px; margin-top: 18px; animation: rise 1.2s .75s both; max-width: 420px; }
@@ -275,16 +277,17 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
 .tpanel .egrid small { display: block; color: #c8a35a; font-size: 11px; letter-spacing: .06em; }
 .tpanel .egrid b { font-family: var(--fd); font-size: 15px; }
 .tpanel p { color: #c9bfae; line-height: 1.7; }
+.tpanel h3 { font-family: var(--fd); font-size: 17px; color: #c8a35a; margin: 22px 0 4px; letter-spacing: .04em; }
 .tpanel .close { margin-top: 6px; padding: 8px 18px; border-radius: 3px; border: 1px solid #c8a35a; background: transparent; color: #c8a35a; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
-@keyframes flick { 0%, 100% { opacity: .85; } 47% { opacity: 1; } 52% { opacity: .6; } }
+@keyframes flick { 0%, 100% { opacity: .85; } 47% { opacity: 1; } 52% { opacity: .55; } }
 #prologue { position: fixed; inset: 0; z-index: 45; background: #050608; display: grid; place-items: center; padding: 28px; cursor: pointer; }
 #prologue .plines { max-width: 620px; display: grid; gap: 18px; }
 #prologue .plines p { margin: 0; font-family: var(--fd); font-size: clamp(17px, 2.2vw, 22px); line-height: 1.75; color: #e6dccb; opacity: 0; transform: translateY(8px); transition: opacity 1.4s, transform 1.4s; }
 #prologue .plines p.on { opacity: 1; transform: none; }
 #prologue .plines p.last { color: #f0a85a; }
 #prologue > small { position: absolute; bottom: 22px; right: 26px; color: #5f584c; font-size: 12px; letter-spacing: .1em; }
-@media (prefers-reduced-motion: reduce) { .tkicker, .tlogo, .tlogo .lg, .tsub, .tmenu { animation: none; } #prologue .plines p { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .tkicker, .tlogo, .tlogo .tlglow, .tsub, .tmenu { animation: none; } #prologue .plines p { transition: none; } }
 /* 모바일: 시작 화면 */
 @media (max-width: 700px), (max-height: 560px) and (orientation: landscape) {
   #title { overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; -webkit-overflow-scrolling: touch; }
@@ -292,7 +295,7 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
   .tvig { background: linear-gradient(180deg, transparent 0%, transparent 18%, #07090c8c 36%, #07090cee 52%, #07090c 70%); }
   .tinner { flex: 1 0 auto; height: auto; max-width: none; box-sizing: border-box; justify-content: flex-end; gap: 10px; padding: max(26svh, 150px) 24px 6px; }
   .tkicker { font-size: 11.5px; letter-spacing: .24em; }
-  .tlogo .l2 { font-size: clamp(64px, 22vw, 108px); }
+  .tlogo .tlsvg { height: clamp(64px, 22vw, 108px); }
   .tsub { font-size: 11px; letter-spacing: .26em; }
   .tsub span { letter-spacing: .14em; margin-left: .5em; }
   .tmenu { margin-top: 8px; gap: 0; max-width: none; }
@@ -380,7 +383,7 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
   <div class="tvig" aria-hidden="true"></div>
   <div class="tinner">
     <div class="tkicker">대한민국 시나리오</div>
-    <h1 class="tlogo"><span class="l2"><span class="lg" aria-hidden="true">반도</span><span class="lt">반도</span></span></h1>
+    <h1 class="tlogo" aria-label="반도"><svg class="tlsvg" viewBox="0 0 412 212" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><defs><linearGradient id="tlgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6e2"/><stop offset=".38" stop-color="#f6cf86"/><stop offset=".66" stop-color="#e08a3c"/><stop offset="1" stop-color="#9e3218"/></linearGradient><filter id="tlblur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter></defs><g class="tlglow" filter="url(#tlblur)"><text x="2" y="180" textLength="408" lengthAdjust="spacingAndGlyphs">반도</text></g><text class="tlshadow" x="2" y="184" textLength="408" lengthAdjust="spacingAndGlyphs">반도</text><text class="tltext" x="2" y="180" textLength="408" lengthAdjust="spacingAndGlyphs" fill="url(#tlgrad)">반도</text></svg></h1>
     <div class="tsub">PENINSULA <span>2020 — 2060</span></div>
     <nav class="tmenu" aria-label="메인 메뉴">
       <button id="tcont" type="button"><b>이어하기</b><small id="tcontinfo"></small></button>
@@ -3487,7 +3490,7 @@ function initTitle() {
     const items = Object.entries(ENDINGS).map(([id, e]) => seen.has(id) ? `<div><small>${e.k}</small><b>${e.t}</b></div>` : `<div class="lock"><small>${e.k}</small><b>? ? ?</b></div>`).join('');
     openTPanel(`<h2>엔딩 기록</h2><p class="hint">${seen.size} / ${Object.keys(ENDINGS).length}. 결말의 성격만 보이고, 이름은 그 결말을 맞아야 드러납니다.</p><div class="egrid">${items}</div>`);
   };
-  $('#tcred').onclick = () => openTPanel(`<h2>제작 정보</h2><p>「반도」는 TFR의 영향을 받아 제작되었습니다.</p><p>대한민국의 선택을 따라가는 비공식 팬 게임이며, 2020년 시작 시점의 정부를 제외한 모든 인물, 세력, 사건, 대사는 창작입니다.</p><p>국경 데이터: Natural Earth (world-atlas). 국기: flag-icons (MIT). 가상 세력의 깃발은 직접 그렸습니다.</p>`);
+  $('#tcred').onclick = () => openTPanel(`<h2>제작 정보</h2><p>「반도」는 TFR의 영향을 받아 제작되었습니다.</p><h3>세계관</h3><p>2020년, 정체를 알 수 없는 병이 세계를 덮칩니다. 국경이 닫히고 공급망이 끊기자, 오래 곪아 있던 갈등이 한꺼번에 터져 나왔습니다.</p><p>가장 먼저 무너진 것은 미국이었습니다. 선거를 둘러싼 분열은 끝내 총성으로 번졌고, 서로 자기가 합법 정부라고 주장하는 두 개의 워싱턴이 생겨났습니다. 태평양 건너의 기지들은 본토의 명령을 기다렸지만, 돌아오는 신호는 엇갈리거나 아예 끊겼습니다. 반세기 넘게 아시아의 질서를 떠받치던 기둥이 하룻밤 사이에 빠져나간 것입니다.</p><p>유럽도 손을 내밀 형편이 아니었습니다. 동쪽 국경에서는 러시아와의 전쟁이 불붙었고, 안에서는 에너지 위기와 난민, 극단주의 정당의 약진이 정부를 하나씩 흔들었습니다. 유럽에게 아시아는 걱정은 되지만 당장 손쓸 수 없는, 너무 먼 곳이 되었습니다.</p><p>그 빈자리를 노리는 나라들이 있습니다. 베이징은 대륙의 질서를 다시 쓰려 하고, 도쿄는 미국이 비운 자리를 스스로 채우겠다며 다시 군대를 키웁니다. 서쪽 전선에 묶인 모스크바조차 극동을 곁눈질합니다. 그리고 휴전선 너머의 평양은 아무도 말릴 수 없는 이 순간을 오래 기다려 왔습니다.</p><p>이제 대한민국을 지켜 줄 나라는 대한민국뿐입니다. 불길 속에서 이 반도가 무엇을 지키고 무엇을 내줄지는 당신의 선택에 달려 있습니다.</p><h3>알려 드립니다</h3><p>대한민국의 선택을 따라가는 비공식 팬 게임이며, 2020년 시작 시점의 정부를 제외한 모든 인물, 세력, 사건, 대사는 창작입니다.</p><p>국경 데이터: Natural Earth (world-atlas). 국기: flag-icons (MIT). 가상 세력의 깃발은 직접 그렸습니다.</p>`);
   document.addEventListener('keydown', e => { if ($('#title').hidden) return; if (e.key === 'Escape') { $('#tpanel').hidden = true; $('#tconfirm').hidden = true; } });
   $('#prologue').onclick = () => { if (proDone) proDone(); };
 }
