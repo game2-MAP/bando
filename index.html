@@ -243,11 +243,10 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
 .tinner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 0 clamp(24px, 7vw, 110px); max-width: 760px; }
 .tkicker { font-family: "Cinzel", var(--fd); letter-spacing: .32em; font-size: 12.5px; color: #c8a35a; font-weight: 700; animation: rise 1.2s .1s both; }
 .tkicker span { color: #8a6d3a; margin: 0 .3em; }
-.tlogo { margin: 0; font-family: var(--fd); font-weight: 900; line-height: .98; display: flex; flex-direction: column; letter-spacing: -.01em;
-  background: linear-gradient(180deg, #fff6e2 0%, #f6cf86 38%, #e08a3c 66%, #9e3218 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 0 22px rgba(255, 110, 40, .32)) drop-shadow(0 2px 0 rgba(0, 0, 0, .6)); animation: rise 1.4s .25s both, flick 5s 2s infinite; }
-.tlogo .l1 { font-size: clamp(40px, 7.4vw, 92px); }
-.tlogo .l2 { font-size: clamp(96px, 18vw, 220px); letter-spacing: .04em; }
+.tlogo { margin: 0; font-family: var(--fd); font-weight: 900; line-height: .98; display: flex; flex-direction: column; letter-spacing: -.01em; animation: rise 1.4s .25s both; }
+.tlogo .l2 { position: relative; align-self: flex-start; font-size: clamp(96px, 18vw, 220px); letter-spacing: .04em; }
+.tlogo .lg { position: absolute; left: 0; top: 0; color: #6e2410; text-shadow: 0 0 22px rgba(255, 110, 40, .55), 0 0 48px rgba(255, 90, 30, .28), 0 3px 0 rgba(0, 0, 0, .65); animation: flick 5s 2s infinite; pointer-events: none; }
+.tlogo .lt { position: relative; display: block; background: linear-gradient(180deg, #fff6e2 0%, #f6cf86 38%, #e08a3c 66%, #9e3218 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
 .tsub { font-family: "Cinzel", serif; letter-spacing: .42em; font-size: clamp(11px, 1.3vw, 14px); color: #b7aa92; animation: rise 1.2s .5s both; }
 .tsub span { color: #e0904a; margin-left: .8em; letter-spacing: .25em; }
 .tmenu { display: grid; gap: 4px; margin-top: 18px; animation: rise 1.2s .75s both; max-width: 420px; }
@@ -278,14 +277,14 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
 .tpanel p { color: #c9bfae; line-height: 1.7; }
 .tpanel .close { margin-top: 6px; padding: 8px 18px; border-radius: 3px; border: 1px solid #c8a35a; background: transparent; color: #c8a35a; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
-@keyframes flick { 0%, 100% { filter: drop-shadow(0 0 22px rgba(255, 110, 40, .32)) drop-shadow(0 2px 0 rgba(0,0,0,.6)); } 47% { filter: drop-shadow(0 0 30px rgba(255, 130, 50, .45)) drop-shadow(0 2px 0 rgba(0,0,0,.6)); } 52% { filter: drop-shadow(0 0 16px rgba(255, 100, 30, .25)) drop-shadow(0 2px 0 rgba(0,0,0,.6)); } }
+@keyframes flick { 0%, 100% { opacity: .85; } 47% { opacity: 1; } 52% { opacity: .6; } }
 #prologue { position: fixed; inset: 0; z-index: 45; background: #050608; display: grid; place-items: center; padding: 28px; cursor: pointer; }
 #prologue .plines { max-width: 620px; display: grid; gap: 18px; }
 #prologue .plines p { margin: 0; font-family: var(--fd); font-size: clamp(17px, 2.2vw, 22px); line-height: 1.75; color: #e6dccb; opacity: 0; transform: translateY(8px); transition: opacity 1.4s, transform 1.4s; }
 #prologue .plines p.on { opacity: 1; transform: none; }
 #prologue .plines p.last { color: #f0a85a; }
 #prologue > small { position: absolute; bottom: 22px; right: 26px; color: #5f584c; font-size: 12px; letter-spacing: .1em; }
-@media (prefers-reduced-motion: reduce) { .tkicker, .tlogo, .tsub, .tmenu { animation: none; } #prologue .plines p { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .tkicker, .tlogo, .tlogo .lg, .tsub, .tmenu { animation: none; } #prologue .plines p { transition: none; } }
 /* 모바일: 시작 화면 */
 @media (max-width: 700px), (max-height: 560px) and (orientation: landscape) {
   #title { overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; -webkit-overflow-scrolling: touch; }
@@ -381,7 +380,7 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
   <div class="tvig" aria-hidden="true"></div>
   <div class="tinner">
     <div class="tkicker">대한민국 시나리오</div>
-    <h1 class="tlogo"><span class="l2">반도</span></h1>
+    <h1 class="tlogo"><span class="l2"><span class="lg" aria-hidden="true">반도</span><span class="lt">반도</span></span></h1>
     <div class="tsub">PENINSULA <span>2020 — 2060</span></div>
     <nav class="tmenu" aria-label="메인 메뉴">
       <button id="tcont" type="button"><b>이어하기</b><small id="tcontinfo"></small></button>
