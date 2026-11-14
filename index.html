@@ -583,7 +583,7 @@ function F(o) {
 }
 function P(v) { S.press = clamp(S.press + v, 0, 140); }
 function sp(id) { if (!S.spirits.includes(id)) S.spirits.push(id); }
-function unsp(id) { const had = S.spirits.includes(id); if (id === 'pdto' && S.align === 'west') S.align = 'none'; S.spirits = S.spirits.filter(x => x !== id); if (id === 'silence' && had) releasePress(); }
+function unsp(id) { const had = S.spirits.includes(id); if (id === 'pdto' && had) burnBloc('west'); if (id === 'pdto' && S.align === 'west') S.align = 'none'; S.spirits = S.spirits.filter(x => x !== id); if (id === 'silence' && had) releasePress(); }
 function releasePress() { const r = S.press * 0.62 + 8; G({ univ: r, labor: r, relig: r, dias: r, junior: r * 0.35 }); S.press = 0; L('눌려 있던 불만이 한꺼번에 표면으로 올라왔다.'); }
 function Q(id) { if (!S.queue.includes(id) && !S.done[id]) S.queue.push(id); }
 function L(msg) { S.log.unshift({ d: dateStr(S.turn), m: msg }); if (S.log.length > 160) S.log.pop(); }
@@ -676,10 +676,11 @@ function warPower() {
 }
 function enemyPower() { if (!S.war) return 0; let e = S.war.enemies.reduce((a, t) => a + natStr(t), 0); if (S.war.bonusE > 0) e *= 1.25; if (S.st.nuke >= 2) e *= 0.9; return e; }
 function startWar(enemies, opt = {}) {
+  enemies.forEach(burnForEnemy);
   S.war = Object.assign({ enemies: [...enemies], turns: 0, stance: 'def', stale: 0, lastOffer: -9, bonusE: 0, bonusP: 0, mobUsed: false, exh: {}, peninsula: enemies.includes('PRK'), chinaIn: false }, opt);
   sp('war');
 }
-function addEnemy(E) { if (!S.war) startWar([E]); else if (!S.war.enemies.includes(E)) S.war.enemies.push(E); if (E === 'CHN') S.war.chinaIn = true; if (E === 'PRK') S.war.peninsula = true; L(`${josa(tagName(E), '이가')} 전쟁에 뛰어들었다.`); }
+function addEnemy(E) { burnForEnemy(E); if (!S.war) startWar([E]); else if (!S.war.enemies.includes(E)) S.war.enemies.push(E); if (E === 'CHN') S.war.chinaIn = true; if (E === 'PRK') S.war.peninsula = true; L(`${josa(tagName(E), '이가')} 전쟁에 뛰어들었다.`); }
 function removeEnemy(E) {
   if (!S.war) return;
   S.war.enemies = S.war.enemies.filter(e => e !== E);
@@ -868,8 +869,16 @@ function ideoTick() {
 
 // ================= 진영과 관계 =================
 const ALIGNN = { none: '비동맹', west: 'PDTO 진영', china: '동아시아방위구상(친중)', russia: '유라시아 안보조약(친러)' };
+// 한 번 탈퇴했거나 회원국을 공격한 진영은 다시 초청하지 않는다
+const BLOC_OF = { west: ['JPN', 'PHL'], china: ['CHN'], russia: ['RUS'], sco: ['CHN', 'RUS', 'KAZ', 'UZB', 'KGZ', 'TJK'] };
+const BLOC_NAME = { west: 'PDTO', china: '동아시아방위구상', russia: '유라시아 안보조약', sco: '상하이협력기구' };
+const blocBurned = k => !!(S.flags.burned && S.flags.burned[k]);
+function burnBloc(k) { if (!k || k === 'none' || blocBurned(k)) return; (S.flags.burned = S.flags.burned || {})[k] = true; }
+const blocsHitBy = E => Object.keys(BLOC_OF).filter(k => BLOC_OF[k].includes(E));
+function burnForEnemy(E) { blocsHitBy(E).forEach(burnBloc); }
 function setAlign(a) {
   const prev = S.align;
+  if (prev !== 'none' && prev !== a) burnBloc(prev);
   ['pdto', 'eadi', 'eurasia'].forEach(x => S.spirits = S.spirits.filter(y => y !== x));
   S.align = a; S.flags.alignT = S.turn;
   if (a === 'west') sp('pdto');
@@ -1235,11 +1244,11 @@ NAT_LIST.forEach(E => {
   DEC.push({ id: 'dow_' + E, g: '외교', nat: E, n: '선전포고', cost: 30,
     req: () => S.just[E] != null && S.turn >= S.just[E] && !(S.war && S.war.enemies.includes(E)) && owned(E).length && contact(E),
     why: () => S.just[E] == null ? '명분 필요' : S.turn < S.just[E] ? `${S.just[E] - S.turn}분기 후 명분 확보` : !contact(E) ? '우리나 동맹국·보호국과 맞닿은 국경이 없습니다' : '불가',
-    d: () => `${tagName(E)}에 전쟁을 선포합니다.${S.route === 'normal' && S.st.ws < 45 ? ' 전쟁 지지가 45 미만이라 안정도가 크게 떨어집니다.' : ''}`,
+    d: () => `${tagName(E)}에 전쟁을 선포합니다.${(() => { const b = blocsHitBy(E).filter(k => !blocBurned(k)); return b.length ? ` 이후 ${b.map(k => BLOC_NAME[k]).join('·')}의 초청은 다시 오지 않습니다.` : ''; })()}${S.route === 'normal' && S.st.ws < 45 ? ' 전쟁 지지가 45 미만이라 안정도가 크게 떨어집니다.' : ''}`,
     fx: () => { S.declTarget = E; S.done.dow = false; Q('dow'); } });
 });
 DEC.push({ id: 'tour', g: '국정', n: '정상 외교 순방', cost: 45, cd: 4, d: '전쟁 중이 아닌 모든 나라와의 관계 +5, 평판 +2', fx: () => { NAT_LIST.forEach(E => { if (!(S.war && S.war.enemies.includes(E)) && owned(E).length) R(E, 5); }); A('rep', 2); } });
-DEC.push({ id: 'leavebloc', g: '국정', n: '진영 탈퇴', cost: 40, req: () => S.align !== 'none' && !S.war, why: '전쟁 중에는 불가', d: () => `${ALIGNN[S.align]}에서 탈퇴합니다. 맹주와의 관계 −40`, fx: () => { const p = { west: 'JPN', china: 'CHN', russia: 'RUS' }[S.align]; R(p, -40); setAlign('none'); } });
+DEC.push({ id: 'leavebloc', g: '국정', n: '진영 탈퇴', cost: 40, req: () => S.align !== 'none' && !S.war, why: '전쟁 중에는 불가', d: () => `${ALIGNN[S.align]}에서 탈퇴합니다. 맹주와의 관계 −40 · 이 진영의 초청은 다시 오지 않습니다`, fx: () => { const p = { west: 'JPN', china: 'CHN', russia: 'RUS' }[S.align]; R(p, -40); setAlign('none'); } });
 function decCost(d) { return d.costFn ? d.costFn() : d.cost; }
 const txtv = v => typeof v === 'function' ? v() : v;
 function decState(d) {
@@ -1353,7 +1362,7 @@ pyeongtaek: {
   opts: [
     { t: '평택 협약에 서명합니다', h: '주한미군 유지: 전시 군사력 ×1.25 · 매 분기 재정 부담', fx: () => { S.usfk = 'pact'; sp('usfk_pact'); A('mil', 4); L('평택 협약 체결. 주한미군 사령부가 본토 내전에 중립을 선언했다.'); } },
     { t: '철수 일정을 함께 짭니다 — 자주국방', h: '군사력이 매 분기 상승 · 전작권 즉시 환수 · 핵의 문턱이 열립니다', fx: () => { S.usfk = 'leave'; sp('selfdef'); A('stab', -4); A('ws', 4); L('주한미군이 단계적으로 철수했다. 전시작전권이 넘어왔다.'); } },
-    { t: '도쿄와 손잡습니다 — PDTO 가입', h: '전시 일본 지원 · 국내 반발 사건 발생', fx: () => { S.usfk = 'pdto'; setAlign('west'); L('대한민국이 태평양방위조약기구 가입을 신청했다.'); } },
+    { t: '도쿄와 손잡습니다 — PDTO 가입', h: '전시 일본 지원 · 국내 반발 사건 발생', if: () => !blocBurned('west'), fx: () => { S.usfk = 'pdto'; setAlign('west'); L('대한민국이 태평양방위조약기구 가입을 신청했다.'); } },
     { t: '베이징과 비밀리에 접촉합니다', h: '전쟁 위험이 낮아질 수 있습니다 · 군 내부 불만', fx: () => { S.usfk = 'beijing'; G({ junior: 6 }); L('국가안보실이 베이징에 비공식 특사를 보냈다.'); } },
   ] },
 
@@ -2210,7 +2219,7 @@ ENDINGS.swiss.cont = '영세중립국으로 이후의 역사를 이어서 플레
 Object.assign(EV, {
 pdtoInvite: {
   title: 'PDTO의 초대', tags: ['KOR', 'JPN', 'PHL'],
-  when: s => s.align === 'none' && !s.spirits.includes('neutral') && !s.flags.finland && !s.war && !s.flags.japanDefeated && !s.flags.japanHostile && owned('JPN').length && s.turn >= 8 && s.turn - (s.flags.pdtoOffer ?? -99) >= 12 && pdtoReasons().length > 0,
+  when: s => s.align === 'none' && !blocBurned('west') && !s.spirits.includes('neutral') && !s.flags.finland && !s.war && !s.flags.japanDefeated && !s.flags.japanHostile && owned('JPN').length && s.turn >= 8 && s.turn - (s.flags.pdtoOffer ?? -99) >= 12 && pdtoReasons().length > 0,
   text: () => { const r = pdtoReasons(); return `태평양방위조약기구 사무총장 마리아 산토스가 서울을 찾았다. 마닐라 출신의 외교관이었고, 쓸데없는 인사말로 시간을 낭비하지 않는 사람이었다.
 
 "솔직하게 말씀드리죠. 처음 이 조약을 만들 때 한국은 저희 명단에 없었습니다. 한반도는 언제 터질지 모르는 화약고였고, 그 화약고를 끌어안을 이유가 없었으니까요. 그런데 지금은 사정이 다릅니다. 한국은 ${r.join(', 그리고 ')}. 그건 우리 회원국 누구도 혼자서는 못 한 일이에요."
@@ -2224,7 +2233,7 @@ pdtoInvite: {
 
 eadiInvite: {
   title: '베이징의 문', tags: ['CHN', 'KOR'],
-  when: s => s.align === 'none' && !s.spirits.includes('neutral') && !s.war && owned('CHN').length && !s.flags.chinaDefeated && (s.flags.finland || s.rel.CHN >= 50) && s.turn >= 16 && s.turn - (s.flags.eadiOffer ?? -99) >= 12,
+  when: s => s.align === 'none' && !blocBurned('china') && !s.spirits.includes('neutral') && !s.war && owned('CHN').length && !s.flags.chinaDefeated && (s.flags.finland || s.rel.CHN >= 50) && s.turn >= 16 && s.turn - (s.flags.eadiOffer ?? -99) >= 12,
   text: `왕쉬안은 이번에 통역도 수행원도 없이 혼자 왔다. 그는 차를 한 모금 마시고 나서야 입을 열었다.
 
 "지난번에 우리는 종이에 쓰자고 했지요. 이번에는 종이보다 큰 걸 드리러 왔습니다. 동아시아방위구상에 들어오십시오. 그러면 중국 시장의 문이 열리고, 북쪽은 영원히 조용해지고, 한국은 더 이상 바다 건너 누군가의 기분을 살피지 않아도 됩니다."
@@ -2267,7 +2276,7 @@ eadiDemand: {
 
 eurasiaInvite: {
   title: '모스크바의 손짓', tags: ['RUS', 'KOR'],
-  when: s => s.align === 'none' && !s.spirits.includes('neutral') && !s.war && owned('RUS').length && !s.defeated.RUS && (s.rel.RUS >= 40 || s.flags.rusFriend) && s.turn >= 28 && s.turn - (s.flags.eurOffer ?? -99) >= 12,
+  when: s => s.align === 'none' && !blocBurned('russia') && !s.spirits.includes('neutral') && !s.war && owned('RUS').length && !s.defeated.RUS && (s.rel.RUS >= 40 || s.flags.rusFriend) && s.turn >= 28 && s.turn - (s.flags.eurOffer ?? -99) >= 12,
   text: `러시아 특사 아르카디 볼코프는 블라디보스토크에서 배를 타고 부산으로 들어왔다. 그는 그게 상징이라고 했다.
 
 "유럽의 전쟁이 우리를 서쪽에 묶어두고 있습니다. 그동안 극동은 비어 있었지요. 우리는 이제 이 지역에 믿을 수 있는 친구가 필요합니다. 베이징은 친구라기보다는 너무 큰 이웃이고, 도쿄는 오래된 적이니까요."
@@ -2603,7 +2612,7 @@ kgzRev: {
     { t: '지켜봅니다', h: '변화 없음', fx: () => { } },
   ] },
 sco: {
-  title: '상하이협력기구의 초대', tags: ['CHN', 'RUS', 'KAZ'], when: s => s.turn >= 46 && s.align !== 'west' && alive('CHN') && alive('RUS') && calm(s) && chance(0.06),
+  title: '상하이협력기구의 초대', tags: ['CHN', 'RUS', 'KAZ'], when: s => s.turn >= 46 && s.align !== 'west' && !blocBurned('sco') && alive('CHN') && alive('RUS') && calm(s) && chance(0.06),
   text: `상하이협력기구가 대한민국에 옵서버 자격을 제안했다. 중국과 러시아, 중앙아시아 국가들이 모인 기구였다. 초청장에는 '유라시아의 동쪽 관문'이라는 표현이 쓰여 있었다.
 
 외교부 차관은 말했다. "옵서버는 회원이 아닙니다. 회의장에 앉되 투표는 하지 않는 자리지요. 다만 그 자리에 앉는 사진 한 장이 도쿄와 마닐라에서 어떻게 읽힐지는 생각해 봐야 합니다."`,
