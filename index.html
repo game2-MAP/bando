@@ -286,20 +286,90 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
 #prologue .plines p.last { color: #f0a85a; }
 #prologue > small { position: absolute; bottom: 22px; right: 26px; color: #5f584c; font-size: 12px; letter-spacing: .1em; }
 @media (prefers-reduced-motion: reduce) { .tkicker, .tlogo, .tsub, .tmenu { animation: none; } #prologue .plines p { transition: none; } }
-@media (max-width: 700px) { .tvig { background: radial-gradient(ellipse 120% 70% at 60% 30%, transparent 0%, #07090caa 60%, #07090c 100%), linear-gradient(180deg, transparent 20%, #07090cd0 55%); } .tinner { justify-content: flex-end; padding-bottom: 120px; gap: 14px; } .tquote { font-size: 12.5px; bottom: 18px; } .tver { display: none; } }
+/* 모바일: 시작 화면 */
+@media (max-width: 700px), (max-height: 560px) and (orientation: landscape) {
+  #title { overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; -webkit-overflow-scrolling: touch; }
+  #tbg, .tvig { position: fixed; }
+  .tvig { background: linear-gradient(180deg, transparent 0%, transparent 18%, #07090c8c 36%, #07090cee 52%, #07090c 70%); }
+  .tinner { flex: 1 0 auto; height: auto; max-width: none; box-sizing: border-box; justify-content: flex-end; gap: 10px; padding: max(26svh, 150px) 24px 6px; }
+  .tkicker { font-size: 11.5px; letter-spacing: .24em; }
+  .tlogo .l2 { font-size: clamp(64px, 22vw, 108px); }
+  .tsub { font-size: 11px; letter-spacing: .26em; }
+  .tsub span { letter-spacing: .14em; margin-left: .5em; }
+  .tmenu { margin-top: 8px; gap: 0; max-width: none; }
+  .tmenu button { padding: 10px 0 10px 26px; }
+  .tmenu button b { font-size: 21px; }
+  .tmenu button small { font-size: 13px; color: #a39a89; }
+  .tmenu button:hover:not(:disabled), .tmenu button:focus-visible { padding-left: 32px; }
+  .tmenu button::before { width: 12px; }
+  .tconfirm { max-width: none; }
+  .tquote { position: relative; left: auto; right: auto; bottom: auto; margin: 16px 24px calc(22px + env(safe-area-inset-bottom)); max-width: none; font-size: 13.5px; color: #bdb3a2; }
+  .tver { display: none; }
+  .tpanel { position: fixed; padding: 12px; }
+  .tpanel .box { padding: 18px 16px; }
+  .tpanel h2 { font-size: 22px; }
+  .tpanel .egrid { grid-template-columns: 1fr 1fr; }
+  #prologue { padding: 24px 22px; }
+  #prologue .plines p { font-size: 17px; }
+}
 
+/* 모바일: 게임 화면 */
 @media (max-width: 900px) {
-  body { overflow: auto; }
-  #app { height: auto; min-height: 100%; }
+  body { overflow: auto; font-size: 15px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  #app { height: auto; min-height: 100%; grid-template-columns: minmax(0, 1fr); }
+  .top { min-width: 0; }
+  .top { gap: 6px 10px; padding: 8px 12px 6px; }
+  #nation { order: 1; flex: 1 1 auto; }
+  #nation img { width: 32px; height: 24px; }
+  #nation b { font-size: 16px; }
+  #nation small { font-size: 11.5px; }
+  #date { order: 2; font-size: 15px; }
+  #restart { order: 3; padding: 6px 10px; }
+  #ideo { order: 4; flex: 1 1 100%; min-width: 0; padding: 4px 0 2px; border: 0; border-top: 1px solid var(--line); }
+  html, body { overflow-x: hidden; max-width: 100%; }
+  main > *, aside, #tabbody { min-width: 0; }
+  #stats { order: 5; flex: 1 1 100%; min-width: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin: 0; }
+  .chip { justify-content: space-between; padding: 5px 8px; min-width: 0; }
+  .chip span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chip span { font-size: 12px; }
   main { grid-template-columns: 1fr; }
-  #mapwrap { height: 58vh; min-height: 340px; }
+  #mapwrap { height: 54svh; min-height: 300px; }
+  .modes { top: 8px; left: 8px; }
+  .zoom { top: 8px; right: 8px; }
+  .modes button, .zoom button { padding: 9px 13px; font-size: 13.5px; }
+  #legend { left: 8px; bottom: 8px; font-size: 11.5px; padding: 6px 8px; max-width: calc(100% - 16px); }
+  #tip { display: none; }
   aside { border-left: 0; border-top: 1px solid var(--line); }
-  #tabbody { max-height: none; }
-  #stats { margin-left: 0; }
-  #ppanel { width: calc(100% - 24px); }
-  .sum { grid-template-columns: 1fr 1fr; }
+  .tabs { position: sticky; top: 0; z-index: 6; background: var(--panel); }
+  .tabs button { padding: 14px 4px; font-size: 14.5px; }
+  #tabbody { max-height: none; padding: 4px 14px 32px; }
+  #next { position: sticky; bottom: 0; z-index: 7; margin: 0; border-radius: 0; padding: 15px 14px calc(15px + env(safe-area-inset-bottom)); font-size: 15.5px; box-shadow: 0 -8px 24px #000a; }
+  #tabbody h3 { font-size: 16px; }
+  .hint { font-size: 13.5px; line-height: 1.6; }
+  .dec { padding: 12px 13px; }
+  .dec p { font-size: 13.5px; line-height: 1.6; }
+  .dec button { padding: 9px 20px; font-size: 14px; }
+  .bl, .facl, .reg, .sf { font-size: 13.5px; }
+  #ppanel { position: fixed; left: 0; right: 0; bottom: 0; width: auto; max-height: 72svh; overflow-y: auto; border-radius: 12px 12px 0 0; border-left: 0; border-right: 0; padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); z-index: 15; box-shadow: 0 -12px 40px #000c; }
+  #ppanel .x { font-size: 24px; top: 8px; right: 12px; }
+  #ppanel .pacts button { padding: 11px 12px; }
+  #ppanel .pacts span { font-size: 12.5px; }
+  #modal { padding: 0; place-items: stretch; }
+  #modalcard { width: 100%; max-height: none; height: 100%; border-radius: 0; border-left: 0; border-right: 0; -webkit-overflow-scrolling: touch; }
+  #modalcard header { padding: 12px 16px 10px; gap: 10px; }
+  #modalcard h2 { font-size: 21px; }
+  .peek { padding: 7px 10px; }
+  .epi { margin: 12px 16px 0; padding: 10px 14px; font-size: 14.5px; }
+  .etext { padding: 4px 18px; font-size: 16px; line-height: 1.85; }
+  .etext p { margin: 14px 0; }
+  .opts { padding: 10px 14px calc(22px + env(safe-area-inset-bottom)); gap: 10px; }
   .opts.row { grid-template-columns: 1fr; }
-  .etext { padding: 4px 18px; font-size: 15px; }
+  .opt { padding: 13px 14px; }
+  .opt b { font-size: 15.5px; line-height: 1.45; }
+  .opt span { font-size: 13.5px; line-height: 1.55; }
+  .sum { grid-template-columns: 1fr 1fr; margin: 8px 14px 0; }
+  .ending > small, .ending > h2 { padding: 0 16px; }
+  .ending .epi { margin: 12px 16px 4px; }
 }
 </style>
 </head>
@@ -3444,7 +3514,7 @@ function buildTitleMap(W, H) {
   const c = off.getContext('2d');
   const fc = topojson.feature(TOPO, TOPO.objects.p);
   const land = W > H;
-  const pj = land ? d3.geoMercator().center([121, 37.5]).scale(Math.max(W, H) * 1.55).translate([W * 0.68, H * 0.5]) : d3.geoMercator().center([127.3, 38]).scale(H * 1.05).translate([W * 0.58, H * 0.27]);
+  const pj = land ? d3.geoMercator().center([121, 37.5]).scale(Math.max(W, H) * 1.55).translate([W * 0.68, H * 0.5]) : d3.geoMercator().center([127.3, 38]).scale(Math.min(H * 0.95, W * 2.1)).translate([W * 0.6, H * 0.21]);
   const pa = d3.geoPath(pj, c);
   const kor = f => ORIG[f.id] === 'KOR' || ORIG[f.id] === 'PRK';
   c.fillStyle = '#07090c'; c.fillRect(0, 0, W, H);
