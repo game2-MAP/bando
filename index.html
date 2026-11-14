@@ -567,6 +567,8 @@ const lostKOR = () => KOR_IDS.filter(id => !owns(id)).length;
 const avgG = () => Object.values(S.g).reduce((a, b) => a + b, 0) / 5;
 const isSubj = t => !!S.subj[t];
 const friendly = t => t === 'KOR' || isSubj(t);
+// 같은 편: 우리, 보호국, 그리고 지금 우리와 싸우고 있지 않은 동맹국. 이들의 땅은 진격로로 쓸 수 있다
+const sideTag = t => friendly(t) || (!!S.allies[t] && !(S.war && S.war.enemies.includes(t)));
 const occIds = () => Object.keys(S.occ).filter(owns);
 
 // ================= 효과 도우미 =================
@@ -646,7 +648,7 @@ function joinedAllies() {
   if (S.align === 'russia' && !en.includes('RUS') && owned('RUS').length) res.push('RUS');
   for (const a in S.allies) {
     if (!S.allies[a] || en.includes(a) || !owned(a).length || res.includes(a)) continue;
-    if (S.war.defensive || en.some(x => ['CHN', 'RUS', 'PRK'].includes(x))) res.push(a);
+    if (S.war.defensive || en.some(x => ['CHN', 'RUS', 'PRK'].includes(x)) || touches(a, en)) res.push(a);
   }
   return res;
 }
@@ -689,15 +691,24 @@ function targetsFor(side) {
   for (const id in S.own) {
     const o = S.own[id];
     if (side === 'KOR' ? !en.includes(o) : !friendly(o)) continue;
-    let land = 0, sea = 0, att = null, best = -1;
+    let land = 0, sea = 0, vland = 0, vsea = 0, att = null, best = -1;
     for (const j of ADJ[id] || []) {
       const oj = S.own[j];
-      const ok = side === 'KOR' ? oj === 'KOR' : en.includes(oj);
-      if (!ok) continue;
+      if (side === 'KOR') {
+        // 우리 땅에서 바로 치거나, 동맹·보호국 땅을 거쳐 친다
+        if (oj === 'KOR') { if (isSea(id, j)) sea++; else land++; }
+        else if (sideTag(oj)) { if (isSea(id, j)) vsea++; else vland++; }
+        continue;
+      }
+      if (!en.includes(oj)) continue;
       if (isSea(id, j)) sea++; else land++;
-      if (side !== 'KOR') { const s = natStr(oj); if (s > best) { best = s; att = oj; } }
+      const s = natStr(oj); if (s > best) { best = s; att = oj; }
     }
-    if (land || sea) res.push({ id, att, w: land ? land + (S.own[id] === 'PRK' ? 1 : 0) : 0.35 });
+    let w = 0;
+    if (land) w = land + (S.own[id] === 'PRK' ? 1 : 0);
+    else if (vland) w = 0.7 * vland;
+    else if (sea || vsea) w = sea ? 0.35 : 0.25;
+    if (w) res.push({ id, att, w, sea: !land && !vland });
   }
   return res;
 }
@@ -724,12 +735,12 @@ function warTick() {
   if (S.st.nuke >= 3) def *= 0.5;
   let changed = false;
   for (let i = 0; i < tries; i++) {
-    if (Math.random() < atk) { const c = targetsFor('KOR'); if (c.length) { const t = weightedPick(c); if (t.w < 1 && Math.random() > 0.55) { L(`${PNAME[t.id]} 상륙 작전이 해안에서 저지됐다.`); continue; } capture(t.id, 'KOR'); changed = true; } }
+    if (Math.random() < atk) { const c = targetsFor('KOR'); if (c.length) { const t = weightedPick(c); if (t.sea && Math.random() > 0.55) { L(`${PNAME[t.id]} 상륙 작전이 해안에서 저지됐다.`); continue; } capture(t.id, 'KOR'); changed = true; } }
   }
   for (let i = 0; i < etries; i++) {
     if (Math.random() < def) {
       const c = targetsFor('ENEMY'); if (!c.length) break;
-      const t = weightedPick(c); if (t.w < 1 && Math.random() > 0.55) continue; const back = w.enemies.includes(ORIG[t.id]) && natStr(ORIG[t.id]) > 0 ? ORIG[t.id] : t.att;
+      const t = weightedPick(c); if (t.sea && Math.random() > 0.55) continue; const back = w.enemies.includes(ORIG[t.id]) && natStr(ORIG[t.id]) > 0 ? ORIG[t.id] : t.att;
       capture(t.id, back); changed = true;
     }
   }
@@ -1204,7 +1215,7 @@ const DEC = [
 // 국가별 외교 결정 (전쟁·외교 탭에서 보여준다)
 const NAT_GROUP = [['동북아시아', ['PRK', 'CHN', 'TWN', 'JPN', 'RUS', 'MNG']], ['동남아시아', ['VNM', 'LAO', 'KHM', 'THA', 'MMR', 'MYS', 'SGP', 'BRN', 'IDN', 'TLS', 'PHL', 'PNG']], ['남아시아', ['IND', 'PAK', 'BGD', 'NPL', 'BTN', 'LKA']], ['중앙아시아', ['KAZ', 'UZB', 'TKM', 'KGZ', 'TJK', 'AFG']]];
 const NAT_LIST = NAT_GROUP.flatMap(g => g[1]);
-function contact(E) { return Object.keys(S.own).some(id => S.own[id] === E && (ADJ[id] || []).some(j => owns(j))); }
+function contact(E, extra) { return Object.keys(S.own).some(id => S.own[id] === E && (ADJ[id] || []).some(j => { const o = S.own[j]; return o !== E && (sideTag(o) || o === extra); })); }
 NAT_LIST.forEach(E => {
   if (E !== 'PRK') DEC.push({ id: 'envoy_' + E, g: '외교', nat: E, n: '사절과 투자', cost: 20, cd: 3,
     req: () => owned(E).length && !isSubj(E) && !(S.war && S.war.enemies.includes(E)) && S.rel[E] < 95, why: '지금은 불가',
@@ -1223,7 +1234,7 @@ NAT_LIST.forEach(E => {
     d: '두 분기에 걸쳐 선전포고 명분을 만듭니다. 평판 −5', fx: () => { S.just[E] = S.turn + 2; A('rep', -5); L(`${tagName(E)}에 대한 전쟁 명분을 조성하기 시작했다.`); } });
   DEC.push({ id: 'dow_' + E, g: '외교', nat: E, n: '선전포고', cost: 30,
     req: () => S.just[E] != null && S.turn >= S.just[E] && !(S.war && S.war.enemies.includes(E)) && owned(E).length && contact(E),
-    why: () => S.just[E] == null ? '명분 필요' : S.turn < S.just[E] ? `${S.just[E] - S.turn}분기 후 명분 확보` : !contact(E) ? '맞닿은 국경이 없다' : '불가',
+    why: () => S.just[E] == null ? '명분 필요' : S.turn < S.just[E] ? `${S.just[E] - S.turn}분기 후 명분 확보` : !contact(E) ? '우리나 동맹국·보호국과 맞닿은 국경이 없습니다' : '불가',
     d: () => `${tagName(E)}에 전쟁을 선포합니다.${S.route === 'normal' && S.st.ws < 45 ? ' 전쟁 지지가 45 미만이라 안정도가 크게 떨어집니다.' : ''}`,
     fx: () => { S.declTarget = E; S.done.dow = false; Q('dow'); } });
 });
@@ -2346,7 +2357,7 @@ function makeAIWarEvent(id, a, d, cond, title, text) {
     opts: [
       { t: '지켜봅니다', h: '두 나라가 싸웁니다 · 국경이 바뀔 수 있습니다', fx: () => startAIWar(a, d) },
       { t: `${josa(tagName(d), '을를')} 지원합니다`, h: `정치력 −40 · 경제 −2 · ${tagName(d)} 전력 1.4배 · 관계 ${tagName(d)} +25, ${tagName(a)} −15`, fx: () => { startAIWar(a, d, true); A('pp', -40); A('econ', -2); R(d, 25); R(a, -15); } },
-      { t: `${tagName(d)} 편에서 참전합니다`, h: () => `${josa(tagName(a), '과와')} 전쟁 · ${josa(tagName(d), '과와')} 동맹 · 방어 전쟁으로 취급`, if: () => !S.spirits.includes('neutral') && !(S.align === 'china' && a === 'CHN') && contact(a), fx: () => { startAIWar(a, d, true); S.allies[d] = true; R(d, 40); S.just[a] = S.turn; const al = declareWar(a); S.war.defensive = true; L(`대한민국이 ${al.map(tagName).join('·')}과(와) 전쟁에 들어갔다.`); } },
+      { t: `${tagName(d)} 편에서 참전합니다`, h: () => `${josa(tagName(a), '과와')} 전쟁 · ${josa(tagName(d), '과와')} 동맹 · 방어 전쟁으로 취급`, if: () => !S.spirits.includes('neutral') && !(S.align === 'china' && a === 'CHN') && contact(a, d), fx: () => { startAIWar(a, d, true); S.allies[d] = true; R(d, 40); S.just[a] = S.turn; const al = declareWar(a); S.war.defensive = true; L(`대한민국이 ${al.map(tagName).join('·')}과(와) 전쟁에 들어갔다.`); } },
       { t: '베이징을 지지합니다', h: () => `친중 진영일 때 · 중국 관계 +15 · ${tagName(d)} 관계 −30 · 평판 −4`, if: () => S.align === 'china' && a === 'CHN', fx: () => { startAIWar(a, d); R('CHN', 15); R(d, -30); A('rep', -4); } },
     ],
   };
