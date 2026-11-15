@@ -6,7 +6,7 @@
 <title>반도</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* 한 가지 세계에만 머무는 전시 상황실: 어두운 해도 위에 놋쇠빛 강조. 지도가 화면의 주인공, 오른쪽은 국정 패널 */
 :root {
@@ -92,7 +92,7 @@ main { display: grid; grid-template-columns: 1fr 400px; min-height: 0; }
 #tip .tm { color: var(--mute); }
 
 aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid var(--line); background: var(--panel); min-height: 0; }
-.tabs { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
+.tabs { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--line); }
 .tabs button { background: none; border: 0; padding: 11px 4px; color: var(--mute); border-bottom: 2px solid transparent; font-weight: 500; }
 .tabs button.on { color: var(--ink); border-bottom-color: var(--brass); }
 .tabs button.alert::after { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--danger); margin-left: 6px; vertical-align: 2px; }
@@ -175,6 +175,45 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
 .epi cite { display: block; margin-top: 6px; font-style: normal; font-family: var(--fb); font-size: 12px; color: var(--brass); }
 .epi cite::before { content: "— "; }
 .ending .epi { margin: 12px 22px 4px; }
+.parties { display: grid; gap: 4px; }
+.parties div { display: grid; grid-template-columns: 12px 1fr auto; gap: 8px; align-items: center; font-size: 13px; padding: 3px 6px; border-radius: 3px; }
+.parties div.rule { background: #ffffff0a; }
+.parties i, .seatl i { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+.parties em { font-style: normal; font-size: 11px; color: var(--brass); margin-left: 4px; }
+.parties b { font-variant-numeric: tabular-nums; }
+.seats { position: relative; display: flex; height: 16px; border-radius: 3px; overflow: hidden; }
+.seats u { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 2px; background: #fff; }
+.seatl { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 6px; font-size: 12px; color: var(--mute); }
+.seatl span { display: flex; align-items: center; gap: 4px; }
+.laws { display: grid; gap: 8px; }
+.law { border: 1px solid var(--line); background: var(--panel2); border-radius: 4px; padding: 10px 12px; display: grid; gap: 8px; }
+.law .lh { display: flex; justify-content: space-between; gap: 8px; } .law .lh span { color: var(--brass); font-size: 12.5px; }
+.lsteps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.lsteps span { font-size: 11px; text-align: center; padding: 4px 2px; border-radius: 2px; background: #0b1016; color: var(--mute); }
+.lsteps span.on { background: var(--brass); color: #16110a; font-weight: 600; }
+.bill { border-top: 1px dashed var(--line); padding-top: 8px; display: grid; gap: 4px; }
+.bill p { margin: 0; font-size: 12.5px; color: #c2bcb0; } .bill small { color: var(--mute); font-size: 12px; }
+.bill button { justify-self: start; padding: 5px 12px; border-radius: 3px; border: 1px solid var(--brass); background: transparent; color: var(--brass); font-size: 12.5px; }
+.bill button:disabled { border-color: var(--line); color: var(--mute); cursor: not-allowed; }
+.doc { margin: 16px 26px 0; font-family: var(--fb); font-size: 14px; }
+.doc.wire { border-top: 1px solid var(--line); }
+.doc.wire div { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.doc.wire time { color: #d0564a; font-weight: 600; font-variant-numeric: tabular-nums; }
+.doc.memo { background: #e9e5dc; color: #23211d; padding: 14px 18px; border-radius: 2px; }
+.doc.memo dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 14px; margin: 0 0 10px; padding-bottom: 10px; border-bottom: 1px solid #b9b3a6; font-size: 13px; }
+.doc.memo dt { color: #6b665c; } .doc.memo dd { margin: 0; font-weight: 600; }
+.doc.memo ul { margin: 0; padding-left: 18px; line-height: 1.7; }
+.doc.memo p { margin: 10px 0 0; font-size: 12.5px; color: #6b665c; }
+.doc.sms { display: grid; gap: 8px; }
+.doc.sms div { max-width: 82%; justify-self: start; background: #222a33; padding: 8px 12px; border-radius: 12px 12px 12px 3px; }
+.doc.sms div.me { justify-self: end; background: #2f4a63; border-radius: 12px 12px 3px 12px; }
+.doc.sms small { display: block; color: #9aa4ad; font-size: 11.5px; margin-bottom: 2px; }
+.doc.poll { border: 1px solid var(--line); padding: 12px 14px; border-radius: 3px; display: grid; gap: 7px; }
+.doc.poll b { font-size: 13px; color: var(--mute); font-weight: 500; }
+.doc.poll div { display: grid; grid-template-columns: 74px 1fr 48px; align-items: center; gap: 8px; }
+.doc.poll i { display: block; height: 12px; border-radius: 2px; }
+.doc.poll em { font-style: normal; font-variant-numeric: tabular-nums; text-align: right; }
+.doc.poll small { color: var(--mute); font-size: 12px; }
 .contnote { margin: 4px 26px 0; padding: 8px 12px; border: 1px dashed var(--brass); border-radius: 4px; color: var(--brass); font-size: 13px; }
 .chap { padding: 0 22px; }
 .voices { display: grid; gap: 8px; }
@@ -234,87 +273,80 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
 #ppanel .pacts button:disabled { border-color: var(--line); cursor: not-allowed; opacity: .7; }
 #ppanel .pacts span { color: var(--mute); font-size: 11.5px; }
 
-/* 메인 메뉴: 불타는 지도 위의 제목 */
-#title { position: fixed; inset: 0; z-index: 40; overflow: hidden; background: #07090c; color: #f1e9da; }
+/* 메인 메뉴: 상황실 지도 */
+#title { position: fixed; inset: 0; z-index: 40; overflow: hidden; background: #0b0d10; color: #e8e4dc; font-family: var(--fb); }
 #tbg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.tvig { position: absolute; inset: 0; pointer-events: none; background:
-  radial-gradient(ellipse 70% 80% at 72% 48%, transparent 0%, transparent 35%, #07090ccc 75%, #07090c 100%),
-  linear-gradient(90deg, #07090cf0 0%, #07090cb0 32%, transparent 62%); }
-.tinner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 0 clamp(24px, 7vw, 110px); max-width: 760px; }
-.tkicker { font-family: "Cinzel", var(--fd); letter-spacing: .32em; font-size: 12.5px; color: #c8a35a; font-weight: 700; animation: rise 1.2s .1s both; }
-.tkicker span { color: #8a6d3a; margin: 0 .3em; }
-.tlogo { margin: 0; font-family: var(--fd); font-weight: 900; line-height: .98; display: flex; flex-direction: column; letter-spacing: -.01em; align-items: flex-start; animation: rise 1.4s .25s both; }
-.tlogo .tlsvg { display: block; height: clamp(96px, 18vw, 220px); width: auto; aspect-ratio: 412 / 212; max-width: 100%; overflow: visible; }
-.tlogo text { font-family: var(--fd); font-weight: 900; font-size: 200px; }
-.tlogo .tlglow text { fill: #ff6a28; opacity: .5; }
-.tlogo .tlglow { animation: flick 5s 2s infinite; }
-.tlogo .tlshadow { fill: #000; opacity: .6; }
-.tsub { font-family: "Cinzel", serif; letter-spacing: .42em; font-size: clamp(11px, 1.3vw, 14px); color: #b7aa92; animation: rise 1.2s .5s both; }
-.tsub span { color: #e0904a; margin-left: .8em; letter-spacing: .25em; }
-.tmenu { display: grid; gap: 4px; margin-top: 18px; animation: rise 1.2s .75s both; max-width: 420px; }
-.tmenu button { position: relative; text-align: left; background: none; border: 0; padding: 10px 0 10px 28px; color: #e9e1d2; display: grid; gap: 2px; transition: padding .25s, color .25s; }
-.tmenu button::before { content: ""; position: absolute; left: 0; top: 50%; width: 14px; height: 1px; background: #8a6d3a; transition: width .25s, background .25s; }
-.tmenu button b { font-family: var(--fd); font-weight: 700; font-size: clamp(20px, 2.2vw, 26px); letter-spacing: .02em; }
-.tmenu button small { color: #8f8676; font-size: 12.5px; }
-.tmenu button:hover:not(:disabled), .tmenu button:focus-visible { padding-left: 40px; color: #ffd9a0; outline: none; }
-.tmenu button:hover:not(:disabled)::before, .tmenu button:focus-visible::before { width: 28px; background: #e0904a; box-shadow: 0 0 10px #e0904a; }
-.tmenu button:disabled { opacity: .35; cursor: default; }
-.tconfirm { max-width: 420px; padding: 14px 16px; border: 1px solid #6b2a20; background: #120c0bdd; border-radius: 4px; }
+.tvig { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, #0b0d10f2 0%, #0b0d10d0 34%, #0b0d1000 64%); }
+.tinner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 0 clamp(24px, 7vw, 110px) 60px; max-width: 640px; }
+.tkicker { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #a39d92; }
+.tkicker b { background: #b8342a; color: #fff; font-weight: 700; padding: 2px 7px; border-radius: 2px; font-size: 12px; }
+.tlogo { margin: 0; font-family: var(--fb); font-weight: 700; font-size: clamp(88px, 13vw, 168px); line-height: 1; letter-spacing: -.05em; color: #efebe3; }
+.tlogo::after { content: ""; display: block; width: 1.1em; height: 6px; margin-top: .14em; background: #b8342a; }
+.tsub { font-size: 15px; color: #a39d92; }
+.tmenu { display: grid; gap: 2px; margin-top: 16px; max-width: 400px; }
+.tmenu button { position: relative; text-align: left; background: none; border: 0; border-left: 3px solid transparent; padding: 11px 14px; color: #e8e4dc; display: grid; gap: 2px; border-radius: 0 3px 3px 0; }
+.tmenu button b { font-weight: 600; font-size: 19px; }
+.tmenu button small { color: #8c877d; font-size: 13px; }
+.tmenu button:hover:not(:disabled), .tmenu button:focus-visible { background: #ffffff0d; border-left-color: #b8342a; outline: none; }
+.tmenu button:disabled { opacity: .4; cursor: default; }
+.tconfirm { max-width: 400px; padding: 14px 16px; border: 1px solid #6b2a20; background: #140d0cee; border-radius: 3px; }
 .tconfirm p { margin: 0 0 10px; color: #f0c9b8; }
 .tconfirm div { display: flex; gap: 8px; }
-.tconfirm button { padding: 8px 16px; border-radius: 3px; border: 1px solid #c8a35a; background: #c8a35a; color: #16110a; font-weight: 700; }
-.tconfirm button + button { background: transparent; color: #c8a35a; }
-.tquote { position: absolute; z-index: 2; left: clamp(24px, 7vw, 110px); right: 24px; bottom: 26px; margin: 0; max-width: 640px; font-family: var(--fd); font-size: 14px; line-height: 1.7; color: #c9bfae; transition: opacity 1.2s; }
-.tquote cite { display: block; margin-top: 4px; font-style: normal; font-family: var(--fb); font-size: 12px; color: #c8a35a; }
-.tquote cite::before { content: "— "; }
-.tver { position: absolute; z-index: 2; right: 22px; bottom: 22px; font-family: "Cinzel", serif; letter-spacing: .2em; font-size: 12px; color: #6d6455; }
-.tpanel { position: absolute; z-index: 3; inset: 0; background: #07090ce8; display: grid; place-items: center; padding: 24px; overflow: auto; }
-.tpanel .box { width: min(760px, 100%); max-height: 100%; overflow: auto; border-top: 2px solid #c8a35a; background: #0e1319; padding: 22px 24px; border-radius: 4px; }
-.tpanel h2 { font-family: var(--fd); margin: 0 0 4px; font-size: 26px; }
+.tconfirm button { padding: 8px 16px; border-radius: 3px; border: 1px solid #b8342a; background: #b8342a; color: #fff; font-weight: 600; }
+.tconfirm button + button { background: transparent; color: #e8e4dc; border-color: #5a5550; }
+.tticker { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; align-items: stretch; height: 40px; background: #0b0d10; border-top: 1px solid #262a30; font-size: 14px; overflow: hidden; }
+.tticker .ttag { flex: none; display: flex; align-items: center; padding: 0 14px; background: #b8342a; color: #fff; font-weight: 700; }
+.tticker .ttrack { flex: 1; overflow: hidden; position: relative; }
+.tticker .tline { position: absolute; left: 0; top: 0; height: 100%; display: flex; align-items: center; white-space: nowrap; color: #d6d1c7; animation: tick 70s linear infinite; padding-left: 100%; }
+.tticker .tline span::after { content: "|"; color: #5a5550; margin: 0 18px; }
+@keyframes tick { to { transform: translateX(-100%); } }
+.tver { position: absolute; z-index: 3; right: 16px; top: 14px; font-size: 12px; color: #6f6a62; }
+.tpanel { position: absolute; z-index: 4; inset: 0; background: #0b0d10ee; display: grid; place-items: center; padding: 24px; overflow: auto; }
+.tpanel .box { width: min(720px, 100%); max-height: 100%; overflow: auto; border-left: 3px solid #b8342a; background: #121519; padding: 22px 24px; border-radius: 0 3px 3px 0; }
+.tpanel h2 { font-family: var(--fb); font-weight: 700; margin: 0 0 4px; font-size: 24px; }
 .tpanel .egrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin: 14px 0; }
-.tpanel .egrid div { border: 1px solid var(--line); border-radius: 4px; padding: 9px 11px; background: #121a23; }
+.tpanel .egrid div { border: 1px solid var(--line); border-radius: 3px; padding: 9px 11px; background: #171b20; }
 .tpanel .egrid div.lock { opacity: .45; }
-.tpanel .egrid small { display: block; color: #c8a35a; font-size: 11px; letter-spacing: .06em; }
-.tpanel .egrid b { font-family: var(--fd); font-size: 15px; }
-.tpanel p { color: #c9bfae; line-height: 1.7; }
-.tpanel h3 { font-family: var(--fd); font-size: 17px; color: #c8a35a; margin: 22px 0 4px; letter-spacing: .04em; }
-.tpanel .close { margin-top: 6px; padding: 8px 18px; border-radius: 3px; border: 1px solid #c8a35a; background: transparent; color: #c8a35a; }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
-@keyframes flick { 0%, 100% { opacity: .85; } 47% { opacity: 1; } 52% { opacity: .55; } }
-#prologue { position: fixed; inset: 0; z-index: 45; background: #050608; display: grid; place-items: center; padding: 28px; cursor: pointer; }
-#prologue .plines { max-width: 620px; display: grid; gap: 18px; }
-#prologue .plines p { margin: 0; font-family: var(--fd); font-size: clamp(17px, 2.2vw, 22px); line-height: 1.75; color: #e6dccb; opacity: 0; transform: translateY(8px); transition: opacity 1.4s, transform 1.4s; }
-#prologue .plines p.on { opacity: 1; transform: none; }
-#prologue .plines p.last { color: #f0a85a; }
-#prologue > small { position: absolute; bottom: 22px; right: 26px; color: #5f584c; font-size: 12px; letter-spacing: .1em; }
-@media (prefers-reduced-motion: reduce) { .tkicker, .tlogo, .tlogo .tlglow, .tsub, .tmenu { animation: none; } #prologue .plines p { transition: none; } }
+.tpanel .egrid small { display: block; color: #c96a5c; font-size: 11.5px; }
+.tpanel .egrid b { font-size: 15px; font-weight: 600; }
+.tpanel p { color: #c9c3b8; line-height: 1.75; }
+.tpanel h3 { font-size: 16px; font-weight: 700; color: #e8e4dc; margin: 22px 0 4px; }
+.diffs { display: grid; gap: 8px; margin: 12px 0; }
+.diffs button { text-align: left; display: grid; gap: 3px; padding: 12px 14px; background: #171b20; border: 1px solid #2a2f36; border-left: 3px solid #2a2f36; border-radius: 0 3px 3px 0; color: #e8e4dc; }
+.diffs button.rec { border-left-color: #b8342a; }
+.diffs button:hover, .diffs button:focus-visible { background: #1f242a; border-left-color: #b8342a; outline: none; }
+.diffs b { font-size: 17px; } .diffs span { color: #c9c3b8; font-size: 13.5px; } .diffs small { color: #8c877d; font-size: 12px; }
+.tpanel .close { margin-top: 6px; padding: 8px 18px; border-radius: 3px; border: 1px solid #5a5550; background: transparent; color: #e8e4dc; }
+#prologue { position: fixed; inset: 0; z-index: 45; background: #0b0d10; display: grid; place-items: center; padding: 28px; cursor: pointer; }
+#prologue .plines { width: min(620px, 100%); display: grid; gap: 0; border-top: 1px solid #262a30; }
+#prologue .plines p { margin: 0; display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid #262a30; font-size: clamp(15px, 1.8vw, 17px); line-height: 1.6; color: #e8e4dc; opacity: 0; transition: opacity .5s; }
+#prologue .plines p time { color: #8c877d; font-variant-numeric: tabular-nums; font-size: 14px; padding-top: 2px; }
+#prologue .plines p.on { opacity: 1; }
+#prologue .plines p.last { color: #fff; font-weight: 600; }
+#prologue .plines p.last time { color: #e0614f; }
+#prologue > small { position: absolute; bottom: 22px; right: 26px; color: #5f5a52; font-size: 12px; }
+@media (prefers-reduced-motion: reduce) { .tticker .tline { animation: none; padding-left: 14px; } #prologue .plines p { transition: none; } }
 /* 모바일: 시작 화면 */
 @media (max-width: 700px), (max-height: 560px) and (orientation: landscape) {
   #title { overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; -webkit-overflow-scrolling: touch; }
   #tbg, .tvig { position: fixed; }
-  .tvig { background: linear-gradient(180deg, transparent 0%, transparent 18%, #07090c8c 36%, #07090cee 52%, #07090c 70%); }
-  .tinner { flex: 1 0 auto; height: auto; max-width: none; box-sizing: border-box; justify-content: flex-end; gap: 10px; padding: max(26svh, 150px) 24px 6px; }
-  .tkicker { font-size: 11.5px; letter-spacing: .24em; }
-  .tlogo .tlsvg { height: clamp(64px, 22vw, 108px); }
-  .tsub { font-size: 11px; letter-spacing: .26em; }
-  .tsub span { letter-spacing: .14em; margin-left: .5em; }
-  .tmenu { margin-top: 8px; gap: 0; max-width: none; }
-  .tmenu button { padding: 10px 0 10px 26px; }
-  .tmenu button b { font-size: 21px; }
-  .tmenu button small { font-size: 13px; color: #a39a89; }
-  .tmenu button:hover:not(:disabled), .tmenu button:focus-visible { padding-left: 32px; }
-  .tmenu button::before { width: 12px; }
+  .tvig { background: linear-gradient(180deg, #0b0d1000 0%, #0b0d1000 16%, #0b0d10e6 27%, #0b0d10 36%); }
+  .tinner { flex: 1 0 auto; height: auto; max-width: none; box-sizing: border-box; justify-content: flex-end; gap: 10px; padding: max(28svh, 160px) 20px 64px; }
+  .tlogo { font-size: clamp(68px, 22vw, 104px); }
+  .tsub { font-size: 14px; }
+  .tmenu { max-width: none; margin-top: 8px; }
+  .tmenu button { padding: 12px 12px; }
+  .tmenu button b { font-size: 19px; }
   .tconfirm { max-width: none; }
-  .tquote { position: relative; left: auto; right: auto; bottom: auto; margin: 16px 24px calc(22px + env(safe-area-inset-bottom)); max-width: none; font-size: 13.5px; color: #bdb3a2; }
+  .tticker { position: fixed; height: calc(40px + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); font-size: 13.5px; }
   .tver { display: none; }
   .tpanel { position: fixed; padding: 12px; }
   .tpanel .box { padding: 18px 16px; }
-  .tpanel h2 { font-size: 22px; }
+  .tpanel h2 { font-size: 21px; }
   .tpanel .egrid { grid-template-columns: 1fr 1fr; }
-  #prologue { padding: 24px 22px; }
-  #prologue .plines p { font-size: 17px; }
+  #prologue { padding: 22px 18px; }
+  #prologue .plines p { grid-template-columns: 70px 1fr; gap: 10px; font-size: 15px; }
 }
-
 /* 모바일: 게임 화면 */
 @media (max-width: 900px) {
   body { overflow: auto; font-size: 15px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
@@ -372,6 +404,7 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
   .sum { grid-template-columns: 1fr 1fr; margin: 8px 14px 0; }
   .ending > small, .ending > h2 { padding: 0 16px; }
   .ending .epi { margin: 12px 16px 4px; }
+  .doc { margin: 14px 16px 0; }
 }
 </style>
 </head>
@@ -382,18 +415,17 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
   <canvas id="tbg" aria-hidden="true"></canvas>
   <div class="tvig" aria-hidden="true"></div>
   <div class="tinner">
-    <div class="tkicker">대한민국 시나리오</div>
-    <h1 class="tlogo" aria-label="반도"><svg class="tlsvg" viewBox="0 0 412 212" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><defs><linearGradient id="tlgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6e2"/><stop offset=".38" stop-color="#f6cf86"/><stop offset=".66" stop-color="#e08a3c"/><stop offset="1" stop-color="#9e3218"/></linearGradient><filter id="tlblur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter></defs><g class="tlglow" filter="url(#tlblur)"><text x="2" y="180" textLength="408" lengthAdjust="spacingAndGlyphs">반도</text></g><text class="tlshadow" x="2" y="184" textLength="408" lengthAdjust="spacingAndGlyphs">반도</text><text class="tltext" x="2" y="180" textLength="408" lengthAdjust="spacingAndGlyphs" fill="url(#tlgrad)">반도</text></svg></h1>
-    <div class="tsub">PENINSULA <span>2020 — 2060</span></div>
+    <div class="tkicker"><b>상황</b><span>대한민국, 2020년부터 2060년까지</span></div>
+    <h1 class="tlogo">반도</h1>
     <nav class="tmenu" aria-label="메인 메뉴">
       <button id="tcont" type="button"><b>이어하기</b><small id="tcontinfo"></small></button>
-      <button id="tnew" type="button"><b>새 게임</b><small>2020년 1분기, 팬데믹의 겨울부터</small></button>
+      <button id="tnew" type="button"><b>새 게임</b><small>2020년 1월, 첫 확진자가 나온 주부터</small></button>
       <button id="tends" type="button"><b>엔딩 기록</b><small id="tendsinfo"></small></button>
-      <button id="tcred" type="button"><b>제작 정보</b><small>지도·국기 출처와 이 이야기에 대하여</small></button>
+      <button id="tcred" type="button"><b>제작 정보</b><small>세계관, 출처</small></button>
     </nav>
     <div class="tconfirm" id="tconfirm" hidden><p>진행 중인 판이 사라집니다. 새로 시작할까요?</p><div><button id="tyes" type="button">새로 시작</button><button id="tno" type="button">돌아가기</button></div></div>
   </div>
-  <blockquote class="tquote" id="tquote"></blockquote>
+  <div class="tticker" aria-label="뉴스 자막"><span class="ttag">속보</span><div class="ttrack"><div class="tline" id="tline"></div></div></div>
   <div class="tver">6판</div>
   <div class="tpanel" id="tpanel" hidden></div>
 </section>
@@ -426,6 +458,7 @@ aside { display: grid; grid-template-rows: auto 1fr auto; border-left: 1px solid
         <button data-t="gov" role="tab" type="button">국정</button>
         <button data-t="soc" role="tab" type="button">사회</button>
         <button data-t="war" role="tab" type="button">전쟁·외교</button>
+        <button data-t="pol" role="tab" type="button">정치</button>
         <button data-t="log" role="tab" type="button">지난 사건</button>
       </nav>
       <div id="tabbody"></div>
@@ -573,7 +606,7 @@ const occIds = () => Object.keys(S.occ).filter(owns);
 
 // ================= 효과 도우미 =================
 const CAPS = { econ: [0, 200], surv: [0, 4], nuke: [0, 3], mil: [0, 400], ind: [0, 400], tech: [0, 5], rep: [-100, 100] };
-function A(k, v) { if (!(k in S.st)) return; if (k === 'pp') { S.st.pp = Math.max(0, S.st.pp + v); return; } const c = CAPS[k] || [0, 100]; S.st[k] = clamp(S.st[k] + v, c[0], c[1]); }
+function A(k, v) { if (!(k in S.st)) return; if (k === 'popc') demoOnPopc(v); if (k === 'pp') { S.st.pp = Math.max(0, S.st.pp + v); return; } const c = CAPS[k] || [0, 100]; S.st[k] = clamp(S.st[k] + v, c[0], c[1]); }
 function G(o) { for (const k in o) S.g[k] = clamp(S.g[k] + o[k], 0, 100); }
 function Gall(v) { for (const k in S.g) S.g[k] = clamp(S.g[k] + v, 0, 100); }
 function F(o) {
@@ -674,13 +707,13 @@ function warPower() {
   p += Object.keys(S.subj).length * 6;
   return p;
 }
-function enemyPower() { if (!S.war) return 0; let e = S.war.enemies.reduce((a, t) => a + natStr(t), 0); if (S.war.bonusE > 0) e *= 1.25; if (S.st.nuke >= 2) e *= 0.9; return e; }
+function enemyPower() { if (!S.war) return 0; let e = S.war.enemies.reduce((a, t) => a + natStr(t), 0) + covertBonus(); e *= diff().en; if (S.war.bonusE > 0) e *= 1.25; if (S.st.nuke >= 2) e *= 0.9; return e; }
 function startWar(enemies, opt = {}) {
-  enemies.forEach(burnForEnemy);
+  enemies = enemies.filter(Boolean); enemies.forEach(burnForEnemy);
   S.war = Object.assign({ enemies: [...enemies], turns: 0, stance: 'def', stale: 0, lastOffer: -9, bonusE: 0, bonusP: 0, mobUsed: false, exh: {}, peninsula: enemies.includes('PRK'), chinaIn: false }, opt);
   sp('war');
 }
-function addEnemy(E) { burnForEnemy(E); if (!S.war) startWar([E]); else if (!S.war.enemies.includes(E)) S.war.enemies.push(E); if (E === 'CHN') S.war.chinaIn = true; if (E === 'PRK') S.war.peninsula = true; L(`${josa(tagName(E), '이가')} 전쟁에 뛰어들었다.`); }
+function addEnemy(E) { if (!E) return; burnForEnemy(E); if (!S.war) startWar([E]); else if (!S.war.enemies.includes(E)) S.war.enemies.push(E); if (E === 'CHN') S.war.chinaIn = true; if (E === 'PRK') S.war.peninsula = true; L(`${josa(tagName(E), '이가')} 전쟁에 뛰어들었다.`); }
 function removeEnemy(E) {
   if (!S.war) return;
   S.war.enemies = S.war.enemies.filter(e => e !== E);
@@ -724,6 +757,7 @@ function capture(id, tag) {
 }
 function warTick() {
   const w = S.war; w.turns++;
+  covertTick();
   const Pw = warPower(), Ew = Math.max(1, enemyPower()), r = Pw / Ew;
   // 공격하는 쪽이 더 큰 힘이 필요하다: 남의 땅을 칠 때는 방어 측이, 우리 땅을 지킬 때는 우리가 이점을 갖는다
   const ra = Pw / (Ew * 1.3), rd = Ew / (Pw * 1.2);
@@ -1022,6 +1056,7 @@ function gaugeEq() {
   if (S.align === 'china') { e.junior += 8; e.dias += 6; } else if (S.align === 'russia') e.univ += 5;
   if (s.rep < -30) e.dias += 10;
   const ig = ideoStage().g; for (const k in ig) e[k] = Math.max(0, e[k] + ig[k]);
+  const lg = lawG(); for (const k in lg) e[k] = Math.max(0, e[k] + lg[k]);
   return e;
 }
 function ppFactors() {
@@ -1041,6 +1076,7 @@ function ppFactors() {
   if (s.econ > 110) f.push(['경제 규모', Math.min(8, (s.econ - 110) * 0.1)]);
   if (s.debt > 60) f.push(['재정 압박', -Math.min(8, (s.debt - 60) * 0.08)]);
   const ist = ideoStage(); if (ist.pp) f.push([`사회 체제(${ist.n})`, ist.pp]);
+  const pp = polPP(); if (pp) f.push(pp);
   return f;
 }
 function stabFactors() {
@@ -1057,14 +1093,16 @@ function stabFactors() {
   if (s.popc > 80) f.push(['인구 절벽', -(s.popc - 80) * 0.2]);
   const ist = ideoStage(); if (ist.stab) f.push([`사회 체제(${ist.n})`, ist.stab]);
   const pr = Object.keys(S.loc).filter(id => S.loc[id] > 10).length; if (pr) f.push(['지역 시위', -pr * 1.5]);
+  const ls = lawSum('stab'); if (ls) f.push(['현행 법률', ls]);
+  if (diff().stab) f.push([`난이도(${diff().n})`, diff().stab]);
   return f;
 }
 function passive() {
   const s = S.st;
-  s.pp += Math.max(6, ppFactors().reduce((a, f) => a + f[1], 0));
+  s.pp += Math.max(6, ppFactors().reduce((a, f) => a + f[1], 0)) * diff().pp;
   // 경제: 산업력이 성장을 끌고, 과도한 군사력과 부채가 깎는다
   // 평시에는 산업력이 정하는 잠재 수준으로 서서히 회복한다
-  const potential = 100 + (s.ind - 60) * 0.45 - Math.max(0, s.popc - 75) * 0.4 + ideoStage().econ;
+  const potential = 100 + (s.ind - 60) * 0.45 - Math.max(0, s.popc - 75) * 0.4 + ideoStage().econ + lawSum('econ');
   let de = (potential - s.econ) * (S.war ? 0.02 : 0.06) - Math.min(1.2, Math.max(0, s.debt - 40) * 0.015);
   if (s.mil > s.ind * 1.15) de -= (s.mil - s.ind * 1.15) * 0.025;
   A('econ', de);
@@ -1081,7 +1119,7 @@ function passive() {
   const eq = gaugeEq();
   for (const k in S.g) S.g[k] = clamp(S.g[k] + (eq[k] - S.g[k]) * 0.06, 0, 100);
   if (S.route === 'glass' || S.route === 'junta') P(1.6 + s.surv * 1.3); else P(-2.5);
-  A('popc', 0.28);
+  A('popc', 0.2 * diff().popc);
   if (S.route === 'glass') {
     const a = avgG();
     if (a > 45) F({ gaehyeok: (a - 45) * 0.08 });
@@ -1109,7 +1147,7 @@ function nextTurn() {
   passive();
   if (S.war) warTick();
   if (S.flags.warlords) warlordTick();
-  occTick(); subjTick(); relTick(); aiWarTick(); ideoTick();
+  occTick(); subjTick(); relTick(); aiWarTick(); ideoTick(); polTick(); demoTick();
   for (const id in S.loc) { S.loc[id] += S.loc[id] > 0 ? -2 : 2; if (Math.abs(S.loc[id]) < 2) delete S.loc[id]; }
   for (const id in S.locCd) if (--S.locCd[id] <= 0) delete S.locCd[id];
   socialChecks();
@@ -1189,7 +1227,7 @@ const DEC = [
   { id: 'speech', g: '국정', n: '대국민 담화', cost: 20, cd: 2, d: '안정도 +3, 모든 사회 갈래 불만 −3', fx: () => { A('stab', 3); Gall(-3); } },
   { id: 'press', g: '국정', n: '언론 협조 요청', cost: 25, cd: 3, d: '눈에 보이는 불만 −5, 안정도 +3. 보이지 않는 압력 +8, 평판 −3', fx: () => { lean(2); Gall(-5); A('stab', 3); P(8); A('rep', -3); G({ junior: 1 }); if (S.route === 'glass') F({ gongan: 3 }); } },
   { id: 'dialog', g: '국정', n: '시민사회와의 대화', cost: 25, cd: 2, d: '가장 높은 사회 갈래 불만 −8, 안정도 +1', fx: () => { lean(-2); const k = Object.keys(S.g).sort((a, b) => S.g[b] - S.g[a])[0]; G({ [k]: -8 }); A('stab', 1); if (S.route === 'glass') F({ gaehyeok: 7, gongan: -3 }); } },
-  { id: 'birth', g: '국정', n: '저출생·인구 대책', cost: 40, cd: 4, d: '인구 위기 −5, 경제 −1', fx: () => { A('popc', -5); A('econ', -1); } },
+  { id: 'birth', g: '국정', n: '저출산 대책', cost: 40, cd: 4, d: () => `출산·육아 지원을 늘립니다. 인구 위기 −${(5 * birthEff() / 100).toFixed(1)}, 경제 −1. 아이를 낳을 20~39세 인구가 줄수록 효과가 떨어집니다 (지금 ${birthEff()}%)`, fx: () => { birthPolicy(5); A('econ', -1); } },
   // 전시
   { id: 'reserve', g: '전쟁', n: '예비군 총동원', cost: 30, req: () => S.war && !S.war.mobUsed, why: '전쟁마다 한 번', d: '군사력 +8, 전쟁 지지 −4, 노동 불만 +5, 경제 −2', fx: () => { S.war.mobUsed = true; A('mil', 8); A('ws', -4); G({ labor: 5 }); A('econ', -2); } },
   { id: 'appeal', g: '전쟁', n: '국제 지원 호소', cost: 25, cd: 3, req: () => S.war && S.st.rep > 0, why: '평판이 양수일 때', d: '평판에 비례해 군사력 상승, 전쟁 지지 +3', fx: () => { A('mil', Math.round(S.st.rep / 8)); A('ws', 3); } },
@@ -1324,13 +1362,18 @@ function load() { try { const s = localStorage.getItem(SAVE_KEY); return s ? JSO
 const EV = {
 pandemic: {
   title: '보이지 않는 적', tags: ['KOR', 'CHN'],
-  text: `질병관리청 상황실의 전광판은 밤새 꺼지지 않았다. 중국 중부에서 시작된 호흡기 질환은 이미 국경을 의미 없게 만들었고, 대구와 서울에서 집단 감염이 동시에 터졌다. 정부가 발표하는 숫자보다 소문이 먼저 퍼지고 있었다.
+  text: `상황실 벽 모니터 세 대 가운데 하나는 확진자 수, 하나는 병상, 나머지 하나는 뉴스였다. 셋 다 좋은 소식은 없었다.
 
-오혜린 청장은 회의 탁자에 손을 올린 채 대통령을 똑바로 봤다. "이번 병은 우리가 지금까지 겪어본 것들과 다릅니다. 잠복기가 길고, 증상이 없는 사람이 더 많이 옮겨요. 확진자를 찾아내는 속도가 퍼지는 속도를 못 따라가고 있습니다. 그러니까 남은 길은 둘 중 하나예요. 사람들의 발을 묶든지, 아니면 사람들이 어디를 다녔는지를 저희가 전부 알든지요. 둘 다 안 하면 병원이 먼저 무너질 겁니다."
+"잠복기가 길어요. 열 안 나는 사람이 더 많이 옮기고요." 오혜린 청장은 브리핑 자료를 넘기지도 않고 말했다. "지금 속도면 저희가 찾는 것보다 퍼지는 게 빨라요. 사람을 묶든가, 사람들이 어디 다녔는지를 저희가 다 알든가. 둘 중 하나는 하셔야 돼요."
 
-기획재정부 차관 서은수가 조용히 말을 보탰다. "발을 묶으면 자영업자들이 한 계절도 못 버팁니다. 동선을 다 추적하는 건 기술적으로는 가능해요. 카드 결제랑 통신 기록이랑 CCTV를 하나로 묶으면 되니까요. 다만 한 번 그 체계를 깔아두면, 병이 끝난 뒤에 그걸 걷어낼 사람이 있을지는 저도 장담을 못 하겠습니다. 이런 건 만드는 것보다 없애는 게 훨씬 어렵거든요."
+"둘 다 비싸요." 기재부 차관 서은수가 끼어들었다. "묶으면 자영업자들 한 계절 못 버팁니다. 추적은 돈은 덜 드는데, 카드랑 통신이랑 CCTV를 다 엮어야 하거든요."
 
-대통령은 창밖의 텅 빈 광화문 거리를 오래 내려다봤다.`,
+"그게 문제예요?"
+
+"지금은 아니죠. 병 끝나고 나서가 문제지. 한번 깔아 놓으면 그거 다시 걷자고 나설 사람이 없을 거예요."
+
+오혜린은 서은수를 잠깐 쳐다봤다가 대통령 쪽으로 몸을 돌렸다. "병원 무너지는 건 금방입니다. 그 얘기는 그다음에 하셔도 늦지 않아요."`,
+  doc: { kind: 'wire', rows: [['06:10', '대구 시내 대학병원 두 곳 응급실 임시 폐쇄'], ['07:45', '서울 구로구 콜센터에서 집단 감염 확인'], ['08:30', '질병관리청장, 청와대 긴급 보고']] },
   opts: [
     { t: '전면 봉쇄를 선언합니다', h: '경제 −6 · 노동 불만 +8 · 안정도 +3', fx: () => { A('econ', -6); G({ labor: 8 }); A('stab', 3); sp('pandemic'); } },
     { t: '추적 방역 체계를 구축합니다', h: '안정도 +5 · 대학 불만 +4 · 감시 기반 확보(훗날 유리벽 비용 감소)', fx: () => { A('stab', 5); G({ univ: 4 }); S.flags.tracing = true; sp('pandemic'); } },
@@ -1340,9 +1383,14 @@ pandemic: {
 
 oil: {
   title: '검은 파도', tags: ['KOR'], when: s => s.turn >= 2,
-  text: `국제 유가가 바닥을 뚫고 내려갔다. 산유국들이 서로 증산 경쟁을 벌이는 사이, 팬데믹으로 멈춘 공장들은 기름을 쓸 곳이 없었다. 울산과 여수의 정유 단지에서 감원 소식이 들려왔고, 거제와 영암의 조선소에서는 수주가 연달아 취소됐다.
+  text: `보고서는 두 장이었다. 서은수는 그걸 대통령 앞에 놓고 첫 장 맨 아래 줄을 손가락으로 짚었다.
 
-서은수는 보고서를 덮고 말했다. "기름값이 싸지니 오히려 잘됐다고 말하는 사람도 있습니다. 그런데 문제는 우리 물건을 사줄 나라들이 다 같이 가라앉고 있다는 거예요. 산유국은 돈이 없어서 배를 안 사고, 유럽은 공장을 못 돌려서 반도체를 안 삽니다. 지금 재정을 풀면 빚이 늘고, 안 풀면 사람들이 일자리를 잃어요. 세 번째 방법도 있긴 합니다. 대기업들한테 투자와 고용을 유지해 달라고 요청하고, 그 대신 규제를 풀어주는 거죠. 다만 그건 정부가 그 사람들한테 빚을 지는 거라는 걸 알고 하셔야 합니다. 그 빚은 언젠가 다른 모양으로 돌아와요."`,
+"기름값 싸졌다고 좋아하시는 분들도 있는데요. 그게 우리한테 좋으려면 누가 우리 물건을 사 줘야 돼요. 지금은 다 같이 가라앉는 중이라 사 줄 데가 없어요."
+
+"3번은 뭡니까."
+
+"재계는 벌써 반쯤 들어올 준비가 돼 있어요. 투자도 고용도 그대로 가겠대요. 대신 규제를 좀 풀어 달라는 거고요." 서은수는 잠깐 말을 골랐다. "받으면 당장은 편하죠. 근데 그분들이 나중에 청구서 들고 오시면, 그때는 거절하기 어려우실 거예요."`,
+  doc: { kind: 'memo', head: [['수신', '대통령'], ['발신', '기획재정부 2차관 서은수'], ['제목', '유가 급락에 따른 수출 충격 대응 (긴급)']], rows: ['국제 유가 사상 최저. 산유국 증산 경쟁이 이어지는 중', '울산·여수 정유 단지 감원 시작, 거제 조선소 수주 취소 잇따름', '중동은 배를 안 사고, 유럽은 반도체를 안 삼. 팔 곳이 줄어드는 게 핵심', '검토안: ① 재정 확대 ② 긴축 ③ 대기업과 투자·고용 유지 협약 ④ 동남아 시장 전환'], foot: '※ ③은 규제 완화가 조건. 정부가 재계에 빚을 지는 구조가 됨' },
   opts: [
     { t: '재정을 대규모로 풉니다', h: '경제 +4 · 국가 부채 크게 증가', fx: () => { A('econ', 4); S.st.debt += 20; sp('oilshock'); } },
     { t: '긴축으로 버팁니다', h: '경제 −3 · 노동 불만 +9 · 부채 감소', fx: () => { A('econ', -3); G({ labor: 9 }); S.st.debt = Math.max(0, S.st.debt - 10); sp('oilshock'); } },
@@ -1352,13 +1400,22 @@ oil: {
 
 pyeongtaek: {
   title: '평택의 마지막 회의', tags: ['KOR', 'USA'], when: s => s.turn >= 4,
-  text: `미국에서 내전이 터졌다는 속보가 나온 지 사흘째였다. 험프리스 기지 지휘통제실에는 꺼진 모니터가 반쯤 섞여 있었다. 워싱턴에서 오던 신호는 끊겼고, 그 뒤로 들어온 건 서로 자기가 합법 정부라고 주장하는 두 개의 전문뿐이었다.
+  text: `험프리스 기지 지휘통제실 모니터는 절반이 꺼져 있었다. 켜진 쪽에서는 같은 뉴스가 영어로, 스페인어로, 한국어 자막으로 돌고 있었다.
 
-해스킨스 대장이 서류를 탁자에 내려놓았다. "장관님, 솔직하게 말씀드리겠습니다. 지금 이 기지에 있는 병사들 대부분은 고향에 있는 가족이 어느 편 도시에 사는지도 확인을 못 하고 있어요. 그런 애들한테 여기 남아서 한국을 지키라고 명령하려면, 적어도 그 명령을 누가 내리는 건지는 제가 말해줄 수 있어야 합니다. 그런데 저는 그걸 모릅니다. 제가 아는 건 우리가 떠나면 휴전선 너머에서 누가 제일 먼저 웃을지 정도예요."
+해스킨스 대장은 의자에 앉지 않았다. "장관님, 지금 워싱턴에서 전문이 두 개 와요. 서로 자기가 진짜래요. 하나는 남으라고 하고, 하나는 돌아오래요."
 
-국방부 장관 한도윤은 한동안 창밖 활주로를 보다가 입을 열었다. "그러면 이렇게 하죠. 명령은 아무도 내리지 않습니다. 대신 대한민국 정부가 장군님 부대의 급여와 보급과 귀국 비용까지 전부 책임지겠습니다. 남을 사람은 남고, 떠날 사람은 우리가 비행기를 띄워서 보내드리죠. 저는 장군님 병사들을 사려는 게 아닙니다. 본국이 다시 하나로 돌아갈 때까지 이 자리를 비워두지 말자는 겁니다. 이 자리가 한 번 비면, 그다음에 누가 앉을지는 장군님도 잘 아시잖아요."
+"장군님은 어느 쪽을 믿으십니까."
 
-회의가 끝난 뒤 청와대에는 세 갈래의 의견이 더 올라왔다. 미군을 보내고 이참에 우리 손으로 서자는 의견, 일본과 손잡고 태평양 쪽 동맹에 들어가자는 의견, 그리고 아무도 크게 말하지 못한 마지막 의견. 베이징과 이야기를 해보자는 것이었다.`,
+"믿고 말고의 문제가 아니라요." 해스킨스는 웃었는데, 웃는 얼굴은 아니었다. "여기 애들 절반은 고향에 전화가 안 돼요. 가족이 어느 쪽 도시에 사는지도 모르는 애들한테 여기 남아서 한국 지키라고 하려면, 적어도 그 명령을 누가 내리는 건지는 제가 알아야죠. 근데 모르겠어요."
+
+국방부 장관 한도윤은 한참 활주로 쪽을 보다가 고개를 돌렸다. "그럼 명령 얘기는 빼죠. 급여, 보급, 귀국 비행기까지 전부 저희가 대겠습니다. 남을 사람은 남고, 갈 사람은 보내드리고."
+
+"그거 용병 계약처럼 들리는데요."
+
+"자리 좀 맡아 달라는 겁니다. 본국이 정리될 때까지만요." 한도윤이 말했다. "이 자리 한번 비면 누가 제일 먼저 앉으러 올지, 장군님이 저보다 잘 아시잖아요."
+
+그날 밤 청와대로 안이 네 개 올라왔다. 미군을 붙잡는 안, 보내고 우리끼리 서는 안, 일본과 손잡는 안. 그리고 맨 마지막 장에 작성자 이름이 빠진 안이 하나 있었다. 베이징과 얘기해 보자는 것이었다.`,
+  doc: { kind: 'wire', rows: [['03:20', '美 국방부 "합참 지휘 계통에 일시적 혼선"'], ['05:02', '텍사스·조지아 주정부 "연방 명령 효력 인정 못 해"'], ['05:40', '주한미군사령부, 전 장병 외출 금지']] },
   opts: [
     { t: '평택 협약에 서명합니다', h: '주한미군 유지: 전시 군사력 ×1.25 · 매 분기 재정 부담', fx: () => { S.usfk = 'pact'; sp('usfk_pact'); A('mil', 4); L('평택 협약 체결. 주한미군 사령부가 본토 내전에 중립을 선언했다.'); } },
     { t: '철수 일정을 함께 짭니다 — 자주국방', h: '군사력이 매 분기 상승 · 전작권 즉시 환수 · 핵의 문턱이 열립니다', fx: () => { S.usfk = 'leave'; sp('selfdef'); A('stab', -4); A('ws', 4); L('주한미군이 단계적으로 철수했다. 전시작전권이 넘어왔다.'); } },
@@ -1368,13 +1425,21 @@ pyeongtaek: {
 
 envoy: {
   title: '베이징의 손님', tags: ['CHN', 'KOR'], when: s => s.usfk === 'beijing' && s.turn >= 5,
-  text: `특사 왕쉬안은 통역을 물리고 직접 한국어로 말했다. 발음은 어색했지만 단어 하나하나를 고른 티가 났다.
+  text: `왕쉬안은 통역을 내보냈다. 한국어가 서툴렀는데, 단어 하나 고를 때마다 시간을 들였다.
 
-"우리는 한국에 미국을 버리라고 하지 않습니다. 미국은 지금 스스로를 버리고 있으니까요. 우리가 바라는 건 아주 단순합니다. 한반도에 다른 나라 군대가 다시 들어오지 않는다는 약속, 그리고 우리가 대만 문제를 정리하는 동안 서울이 조용히 있어 준다는 약속. 그 대가로 평양은 우리가 붙잡아 두겠습니다. 김 위원장이 아무리 조급해도, 우리가 기름과 쌀을 끊으면 그는 움직이지 못합니다."
+"미국을 버리라는 얘기 아닙니다. 미국은 지금 자기가 자기를 버리고 있으니까." 그는 찻잔을 손바닥 안에서 돌렸다. "우리가 원하는 건 두 개예요. 한반도에 외국 군대 다시 안 들어오는 것. 그리고 우리가 대만 정리하는 동안 서울이 조용히 있는 것."
 
-한도윤은 찻잔을 내려놓았다. "특사님, 붙잡아 두겠다는 말은 언제든 놓아줄 수도 있다는 말이기도 합니다. 저희가 그 약속을 믿고 군을 줄였다가, 어느 날 베이징의 기분이 바뀌면 그때는 누가 저희를 지켜줍니까. 저는 지금 특사님을 의심하는 게 아니라, 이 자리에 앉은 사람이 언젠가 바뀔 거라는 사실을 말씀드리는 겁니다."
+"그 대신은요?"
 
-왕쉬안은 웃지 않았다. "그래서 우리는 종이에 쓰자는 겁니다. 사람은 바뀌어도 종이는 남으니까요. 물론, 종이를 찢는 쪽이 누가 될지도 그 종이가 정해주겠지요."`,
+"평양은 우리가 잡고 있겠습니다. 기름하고 쌀 끊으면 그 사람 못 움직여요."
+
+한도윤이 찻잔을 내려놓았다. "잡고 있겠다는 건, 언제든 놓을 수도 있다는 말 아닙니까."
+
+"그렇죠."
+
+"저희가 그 말 믿고 군대를 줄였는데, 몇 년 뒤에 베이징 분위기가 바뀌면요?"
+
+왕쉬안이 처음으로 웃었다. "그래서 문서로 하자는 거예요. 사람은 바뀌어도 문서는 남으니까. 뭐, 문서를 찢는 사람도 결국은 사람이지만."`,
   opts: [
     { t: '밀약을 맺습니다', h: '「베이징 밀약」 · 북한 남침 억제 협상 가능 · 군 소장파 +15 · 평판 −5', fx: () => { S.flags.finland = true; sp('finland'); G({ junior: 15 }); A('rep', -5); L('서울과 베이징 사이에 비공개 각서가 오갔다.'); } },
     { t: '협상을 결렬시킵니다', h: '자주국방 노선으로 전환 · 중국과의 관계 악화', fx: () => { S.usfk = 'leave'; sp('selfdef'); S.flags.chinaAngry = true; L('베이징 특사가 빈손으로 돌아갔다.'); } },
@@ -1383,11 +1448,18 @@ envoy: {
 
 humiliation: {
   title: '굴욕인가 생존인가', tags: ['KOR', 'JPN'], when: s => s.usfk === 'pdto' && s.turn >= 5,
-  text: `광화문 광장에는 다시 사람들이 모였다. 이번에 그들이 든 피켓에는 대통령의 이름 대신 일본 총리의 얼굴이 붙어 있었다. 사과도 배상도 끝나지 않았는데 군사 동맹이 먼저냐는 구호가 세종대로를 따라 길게 이어졌다.
+  text: `광화문에 다시 사람이 찼다. 이번에는 피켓에 대통령 얼굴이 아니라 일본 총리 얼굴이 붙어 있었다. 사과도 배상도 안 끝났는데 동맹부터 하냐는 구호가 세종대로를 따라 이어졌다.
 
-도쿄에서 온 사카이 외무상은 기자회견 대신 조용한 만찬을 원했다. "저도 서울 거리를 봤습니다. 과거의 일에 대해 지금 제가 드릴 수 있는 말에는 한계가 있어요. 우리 국내에도 이 동맹을 반대하는 사람이 많습니다. 다만 하나는 분명히 말씀드릴 수 있어요. 지금 이 바다 건너편에서 일어나는 일은, 우리가 서로를 얼마나 싫어하는지와 상관없이 우리 둘 다를 집어삼킬 겁니다. 저는 한국 사람들이 저희를 용서하길 바라는 게 아닙니다. 같은 배에 탄 걸 인정해주길 바랄 뿐이에요."
+사카이 외무상은 기자회견을 마다하고 조용한 저녁 자리를 원했다.
 
-외교부 장관은 그 말을 그대로 전해야 할지, 아니면 협정을 아무도 모르게 서랍 속에 넣어둬야 할지 고민했다.`,
+"오는 길에 봤습니다." 그가 젓가락을 내려놓았다. "저희 쪽에도 이거 반대하는 사람 많아요. 여당 의원 절반은 한국하고 묶이는 게 싫다고 합니다."
+
+"그런데 왜 하자고 하십니까."
+
+"바다 건너에서 벌어지는 일이 우리가 서로 얼마나 싫어하는지까지 봐 주지는 않으니까요." 사카이는 잠깐 말을 멈췄다. "용서해 달라는 게 아닙니다. 같은 배에 탔다는 것만 인정해 달라는 거예요."
+
+외교부 장관은 돌아오는 차 안에서 협정문을 무릎에 올려놓고 있었다. 이걸 들고 광화문을 정면으로 지나갈지, 서랍에 넣을지는 아직 정하지 못했다.`,
+  doc: { kind: 'poll', title: '한일 군사협정, 어떻게 보십니까 (전국 성인 1,004명)', rows: [['찬성', 38, '#4f86c6'], ['반대', 54, '#b8342a'], ['모름', 8, '#5a5550']], foot: '반대 응답자의 다수가 "과거사 정리가 먼저"를 이유로 꼽음' },
   opts: [
     { t: '협정을 공개하고 정면 돌파합니다', h: '안정도 −6 · 대학 +8 · 종교계 +5 · PDTO 지원 최대', fx: () => { A('stab', -6); G({ univ: 8, relig: 5 }); A('rep', 6); } },
     { t: '비공개 협력에 머뭅니다', h: '안정도 −2 · PDTO 지원 감소', fx: () => { A('stab', -2); S.flags.pdtoQuiet = true; } },
@@ -1396,24 +1468,36 @@ humiliation: {
 
 election: {
   title: '제20대 대통령 선거', tags: ['KOR'], when: s => s.turn >= 8,
-  text: `개표 방송의 그래프는 밤 열한 시가 넘도록 엎치락뒤치락했다. 팬데믹과 경제 충격과 바다 건너의 내전이 한꺼번에 덮친 선거였다. 사람들은 누가 더 좋은 나라를 만들지보다 누가 이 위기를 덜 망칠지를 놓고 표를 던졌다.
+  text: `개표 방송 그래프는 밤 열한 시를 넘겨서도 엎치락뒤치락했다. 팬데믹에, 경제에, 바다 건너 내전까지 한꺼번에 덮친 선거였다. 사람들은 누가 나라를 잘 만들지보다 누가 덜 망칠지를 놓고 표를 던졌다.
 
-보수 정당 후보는 동맹과 억지력을 말했다. 북쪽이 움직이기 전에 먼저 힘을 보여줘야 하고, 미국이 비운 자리는 일본이든 누구든 같은 편과 함께 메워야 한다고 했다. 진보 정당 후보는 대화와 균형을 말했다. 강대국 사이에서 한 쪽에 너무 깊이 기대면 그 쪽이 흔들릴 때 같이 쓰러진다고, 평양과의 통로를 끊지 말아야 한다고 했다.
+보수 후보는 유세 마지막 날까지 같은 말을 했다. 미국이 비운 자리는 누구든 같은 편과 메워야 한다고. 진보 후보는 반대로 말했다. 한쪽에 너무 기대면 그쪽이 흔들릴 때 같이 넘어간다고, 평양하고 연락선은 살려 둬야 한다고. 둘 다 지겹다는 사람들의 표는 제3지대 후보가 생각보다 많이 쓸어 담았다.
 
-새벽 두 시, 방송사 출구조사 팀장은 마지막 표본을 받아 들고 한참을 말이 없었다. 차이는 거의 없었다. 그 얇은 차이가 앞으로 몇 년 동안 이 나라가 걸어갈 길을 정할 것이었다.`,
+새벽 두 시. 방송사 출구조사 팀장이 마지막 표본을 받아 들고 옆자리 PD를 돌아봤다.
+
+"이거 아침까지 가겠는데."`,
+  doc: () => presPollDoc('방송 3사 출구조사'),
   opts: [
-    { t: '보수 정부가 출범합니다', h: '군사력 +5 · 선제 억지 강화 · PDTO 비용 감소 · 대학·노동 불만 +4 · 사회 체제가 우파 쪽으로', fx: () => { S.gov = 'con'; lean('con'); S.flags.honey = 8; S.flags.lastElect = S.turn; A('mil', 5); G({ univ: 4, labor: 4 }); if (S.usfk === 'pdto') A('stab', 3); L('보수 정부가 출범했다.'); } },
-    { t: '진보 정부가 출범합니다', h: '북한 내부 공작 성공률 상승 · 중립화 협상 유리 · 종교계·군 소장파 불만 +4 · 사회 체제가 좌파 쪽으로', fx: () => { S.gov = 'pro'; lean('pro'); S.flags.honey = 8; S.flags.lastElect = S.turn; G({ relig: 4, junior: 4 }); A('rep', 3); L('진보 정부가 출범했다.'); } },
-    { t: '제3지대 정부가 출범합니다', h: '모든 불만 −5 · 정치력 +20 · 사회 체제가 중도·좌파·우파 중 하나로', fx: () => { S.gov = 'mid'; lean('mid'); S.flags.honey = 8; S.flags.lastElect = S.turn; Gall(-5); A('pp', 20); L('제3지대 정부가 출범했다.'); } },
+    { t: '보수 정부가 출범합니다', if: () => presOK('con'), h: '군사력 +5 · 선제 억지 강화 · PDTO 비용 감소 · 대학·노동 불만 +4 · 사회 체제가 우파 쪽으로', fx: () => { S.gov = 'con'; presElect('con'); lean('con'); S.flags.honey = 8; S.flags.lastElect = S.turn; A('mil', 5); G({ univ: 4, labor: 4 }); if (S.usfk === 'pdto') A('stab', 3); L('보수 정부가 출범했다.'); } },
+    { t: '진보 정부가 출범합니다', if: () => presOK('pro'), h: '북한 내부 공작 성공률 상승 · 중립화 협상 유리 · 종교계·군 소장파 불만 +4 · 사회 체제가 좌파 쪽으로', fx: () => { S.gov = 'pro'; presElect('pro'); lean('pro'); S.flags.honey = 8; S.flags.lastElect = S.turn; G({ relig: 4, junior: 4 }); A('rep', 3); L('진보 정부가 출범했다.'); } },
+    { t: '제3지대 정부가 출범합니다', if: () => presOK('mid'), h: '모든 불만 −5 · 정치력 +20 · 사회 체제가 중도·좌파·우파 중 하나로', fx: () => { S.gov = 'mid'; presElect('mid'); lean('mid'); S.flags.honey = 8; S.flags.lastElect = S.turn; Gall(-5); A('pp', 20); L('제3지대 정부가 출범했다.'); } },
   ] },
 
 strait: {
   title: '해협의 불꽃', tags: ['CHN', 'TWN'], when: s => s.turn >= 10,
-  text: `중국 해군이 대만 해협을 봉쇄했다는 소식은 새벽 네 시에 들어왔다. 푸젠 해안에는 상륙함이 줄지어 서 있었고, 타이베이는 서울과 도쿄와 마닐라에 동시에 긴급 전문을 보냈다.
+  text: `합참의장 강태준은 지도를 펴지도 않고 말했다. 이미 머릿속에 다 들어 있는 사람 같았다.
 
-합참의장 강태준은 지도 위에 손가락을 올렸다. "대만이 무너지면 그다음 압박은 곧장 서해로 옵니다. 그렇다고 지금 우리 함정을 해협으로 보내면, 평양이 그 틈을 놓칠 리가 없어요. 제 의견을 물으신다면, 함대는 보내지 말고 탄약과 정보는 보내자는 겁니다. 다만 그것만으로 대만이 버틸 수 있을지는 저도 모르겠습니다."
+"대만 넘어가면 다음 압박은 서해로 옵니다. 그건 확실해요. 근데 지금 우리 배를 내려보내면 평양이 가만있겠습니까."
 
-외교안보수석은 다른 쪽을 짚었다. "베이징은 이번에 누가 대만 편에 섰는지 하나하나 기억할 겁니다. 이번에 이기든 지든요. 우리가 아무것도 하지 않으면 적어도 베이징의 명단에는 안 오릅니다. 대신 대만이 무너진 다음 우리 차례가 왔을 때, 우리 편에 서줄 나라 명단에서도 빠지겠지요."`,
+"그래서요?"
+
+"배는 두고, 탄약하고 정보만 보내자는 겁니다. 그걸로 대만이 버티냐고 물으시면… 저도 모르겠습니다."
+
+외교안보수석이 테이블 끝에서 손을 들었다. "베이징은 이번에 누가 대만 편에 섰는지 다 기억할 거예요. 이기든 지든요. 가만히 있으면 적어도 그 명단엔 안 올라갑니다."
+
+"대신 우리 차례가 왔을 때 우리 편 들어 줄 명단에서도 빠지겠죠." 강태준이 받았다.
+
+아무도 대꾸하지 않았다.`,
+  doc: { kind: 'wire', rows: [['04:02', '中 해군, 대만 해협 봉쇄 선언'], ['04:15', '타이베이, 서울·도쿄·마닐라에 긴급 전문'], ['04:40', '푸젠 해안 상륙함 집결 위성 사진 공개']] },
   opts: [
     { t: '중립을 지킵니다', h: '중국과의 관계 유지 · 대만 함락 가능성 높음', fx: () => { S.taiwan = 'none'; } },
     { t: '탄약과 정보를 지원합니다', h: '대만 함락 가능성 감소 · 중국 반감', fx: () => { S.taiwan = 'rear'; A('rep', 4); S.flags.chinaAngry = true; } },
@@ -1453,15 +1537,25 @@ mediation: {
 
 dandong: {
   title: '단둥의 찻집', tags: ['KOR', 'PRK'], when: s => s.turn >= 13 && !s.flags.finland && !s.flags.noWar,
-  text: `국정원은 북한군이 휴전선 일대에 포병을 전진 배치하고 있다는 보고를 올렸다. 시간이 많지 않았다.
+  text: `국정원 보고는 짧았다. 휴전선 일대에 북한 포병이 전진 배치되고 있다. 시간이 별로 없다.
 
-압록강 건너편 불빛이 유리창에 번져 있었다. 맞은편에 앉은 사내는 차에 손도 대지 않았다. 군복은 아니었지만 앉는 자세만 봐도 어디서 온 사람인지 알 수 있었다.
+단둥 강변 찻집 유리창에 압록강 건너편 불빛이 번져 있었다. 맞은편 사내는 차에 손도 대지 않았다. 군복은 아니었는데, 앉은 자세만 봐도 어디서 온 사람인지 티가 났다.
 
-"당신네가 뭘 원하는지는 압니다." 사내가 먼저 말을 꺼냈다. "총참모부 안에 원수님 명령을 따르고 싶지 않은 사람이 있느냐, 그게 궁금하겠지요. 있습니다. 그런데 그 사람들이 서울을 좋아해서 그러는 거라고 착각하지는 마십시오. 베이징이 우리 땅을 전쟁터로 쓰고, 끝나면 우리를 특별행정구 같은 걸로 만들어버릴까 봐 그러는 겁니다. 우리는 남조선에 먹히려고 이러는 게 아니라, 아무한테도 안 먹히려고 이러는 겁니다."
+"뭐가 궁금한지 압니다." 사내가 먼저 말했다. "총참모부 안에 원수님 말 듣기 싫은 사람이 있냐. 있습니다."
 
-요원 서진하는 잔을 내려놓았다. "그거면 충분합니다. 저희도 지금 당장 평양에 태극기를 꽂겠다는 게 아니에요. 전쟁이 안 나는 게 먼저고, 그다음 일은 그다음에 얘기하면 됩니다. 다만 하나만 약속해 주세요. 일이 시작되면 휴전선 쪽 포병이 움직이지 않게 해달라는 겁니다. 그것만 지켜주면, 그 뒤에 당신들이 어떤 나라를 세우든 저희가 제일 먼저 인정하겠습니다."
+"몇 명이나요?"
 
-서울로 돌아온 보고서 위에는 세 가지 길이 적혀 있었다. 먼저 치는 것, 기다리는 것, 그리고 이 사내를 믿는 것.`,
+"그건 말 못 하고." 사내가 의자에 등을 기댔다. "착각은 하지 마시오. 그 사람들, 서울이 좋아서 이러는 거 아니니까. 베이징이 우리 땅을 전쟁터로 쓰고, 끝나면 특별행정구 같은 걸로 만들까 봐 그러는 거요. 남조선한테 먹히려는 게 아니라 아무한테도 안 먹히려는 거지."
+
+요원 서진하는 잔을 내려놓았다. "그거면 돼요. 저희도 평양에 태극기 꽂자는 거 아닙니다. 하나만 부탁할게요. 일이 터지면 휴전선 쪽 포병만 움직이지 않게 해 주세요."
+
+"그다음은?"
+
+"그다음은 그다음에 얘기하죠. 당신들이 무슨 나라를 세우든, 저희가 제일 먼저 인정할게요."
+
+사내는 대답 대신 처음으로 찻잔을 들었다.
+
+서울로 올라간 보고서는 한 장이었다. 먼저 칠 것인가, 기다릴 것인가, 이 사내를 믿을 것인가.`,
   opts: [
     { t: '먼저 칩니다 — 선제타격', h: '초반 공세 크게 유리 · 평판 −15 · 중국이 곧바로 개입할 수 있습니다', fx: () => { S.flags.plan = 'pre'; } },
     { t: '기다립니다 — 방어 태세', h: '명분 유지 · 수도권이 첫 타격을 받습니다', fx: () => { S.flags.plan = 'wait'; } },
@@ -2176,15 +2270,16 @@ const PARTL = { CHN: ['동북을 떼어낸다', '만주가 동북 자치공화�
 function makeNatElection(id, turn, label) {
   EV[id] = {
     title: label, tags: ['KOR'], when: s => s.route === 'normal' && s.turn >= turn,
+    doc: () => presPollDoc('대선 후보 지지율 (투표 전날 조사)'),
     text: () => `${S.war ? '전쟁 중에 치러지는 선거였다. 후보들은 전선과 전사자와 전쟁의 끝을 놓고 맞붙었다. 누군가는 선거를 미루자고 했지만, 결국 투표소는 예정된 날에 열렸다.' : '선거철이 돌아왔다. 거리마다 현수막이 걸렸고, 텔레비전 토론은 밤늦게까지 이어졌다.'} ${occIds().length ? '점령지를 계속 가질 것인가, 그 비용을 언제까지 감당할 것인가가 이번 선거의 가장 큰 쟁점이었다.' : '경제와 인구, 그리고 대륙과의 관계가 쟁점이었다.'}
 
 보수 정당 후보는 힘과 질서를 말했다. ${S.war ? '지금 멈추면 지금까지의 희생이 헛되어진다고 했다.' : '강한 나라만이 평화를 지킬 수 있다고 했다.'} 진보 정당 후보는 균형과 사람을 말했다. ${S.war ? '전쟁의 목표를 국민 앞에 분명히 하고, 끝낼 수 있을 때 끝내야 한다고 했다.' : '성장의 과실이 골고루 나뉘어야 이 나라가 버틸 수 있다고 했다.'}
 
 개표 방송이 끝났을 때, 패배한 후보가 먼저 연단에 올랐다. 그는 짧게 결과를 인정했다. 너무 당연해서 아무도 감사하지 않는 장면이었다.`,
     opts: [
-      { t: '보수 정부', h: () => `군사력 +4 · 전쟁 지지 +6 · 대학·노동 불만 +4 · 선거로 모든 불만 −6${S.gov === 'con' ? ' · 연임: 정치력 +20' : ''} · 사회 체제가 우파 쪽으로`, fx: () => { if (S.gov === 'con') A('pp', 20); S.gov = 'con'; lean('con'); S.flags.honey = 8; S.flags.lastElect = S.turn; A('mil', 4); A('ws', 6); Gall(-6); G({ univ: 4, labor: 4 }); A('stab', 3); } },
-      { t: '제3지대 정부', h: '모든 불만 −9 · 정치력 +25 · 사회 체제가 중도·좌파·우파 중 하나로', fx: () => { S.gov = 'mid'; lean('mid'); S.flags.honey = 8; S.flags.lastElect = S.turn; Gall(-9); A('pp', 25); A('stab', 3); } },
-      { t: '진보 정부', h: () => `평판 +4 · 전쟁 지지 −6 · 종교계·군 소장파 불만 +4 · 선거로 모든 불만 −6${S.gov === 'pro' ? ' · 연임: 정치력 +20' : ''} · 사회 체제가 좌파 쪽으로`, fx: () => { if (S.gov === 'pro') A('pp', 20); S.gov = 'pro'; lean('pro'); S.flags.honey = 8; S.flags.lastElect = S.turn; A('rep', 4); A('ws', -6); Gall(-6); G({ relig: 4, junior: 4 }); A('stab', 3); } },
+      { t: '보수 정부', if: () => presOK('con'), h: () => `군사력 +4 · 전쟁 지지 +6 · 대학·노동 불만 +4 · 선거로 모든 불만 −6${S.gov === 'con' ? ' · 연임: 정치력 +20' : ''} · 사회 체제가 우파 쪽으로`, fx: () => { if (S.gov === 'con') A('pp', 20); S.gov = 'con'; presElect('con'); lean('con'); S.flags.honey = 8; S.flags.lastElect = S.turn; A('mil', 4); A('ws', 6); Gall(-6); G({ univ: 4, labor: 4 }); A('stab', 3); } },
+      { t: '제3지대 정부', if: () => presOK('mid'), h: '모든 불만 −9 · 정치력 +25 · 사회 체제가 중도·좌파·우파 중 하나로', fx: () => { S.gov = 'mid'; presElect('mid'); lean('mid'); S.flags.honey = 8; S.flags.lastElect = S.turn; Gall(-9); A('pp', 25); A('stab', 3); } },
+      { t: '진보 정부', if: () => presOK('pro'), h: () => `평판 +4 · 전쟁 지지 −6 · 종교계·군 소장파 불만 +4 · 선거로 모든 불만 −6${S.gov === 'pro' ? ' · 연임: 정치력 +20' : ''} · 사회 체제가 좌파 쪽으로`, fx: () => { if (S.gov === 'pro') A('pp', 20); S.gov = 'pro'; presElect('pro'); lean('pro'); S.flags.honey = 8; S.flags.lastElect = S.turn; A('rep', 4); A('ws', -6); Gall(-6); G({ relig: 4, junior: 4 }); A('stab', 3); } },
     ],
   };
 }
@@ -2941,6 +3036,292 @@ Object.assign(ENDINGS, {
 ENDINGS.commune.q = ['모두를 위한다는 말이, 누군가에게는 모든 걸 잃는다는 말로 들린다.', '인민경제위원'];
 ENDINGS.fascio.q = ['우리가 멈추면 불법이고, 우리를 멈추게 하면 질서입니까.', '광장의 한 노조원'];
 
+// ================= 정치: 정당, 국회, 법률 =================
+// 정당은 사회 갈래의 불만과 사회 체제, 경제와 전쟁에 따라 지지율이 오르내린다.
+// 총선 결과로 국회 의석이 정해지고, 법안은 의석에 따라 통과되거나 부결된다.
+const PARTIES = {
+  con: { n: '국민보수당', s: '보수', col: '#c0544a' },
+  pro: { n: '민주진보당', s: '진보', col: '#4f86c6' },
+  mid: { n: '새미래당', s: '제3지대', col: '#3fa39a' },
+  lab: { n: '정의노동당', s: '노동', col: '#d8b23a' },
+  far: { n: '애국연합', s: '극우', col: '#8a6a52' },
+};
+const PARTY_ORDER = ['lab', 'pro', 'mid', 'con', 'far'];
+// 대선 후보를 내는 정당과, 그 정당과 손잡는 정당
+const PARTNER = { con: 'far', pro: 'lab', mid: null };
+
+// 법률: 왼쪽(0)부터 오른쪽(2)까지. 효과는 사회 갈래 불만의 평형점(g), 잠재 경제(econ), 안정도(stab), 분기마다 붙는 변화(tick)
+const LAWS = {
+  econ: { n: '경제 체제', lv: [
+    { n: '국가 주도 경제', d: '전략 산업을 국가가 직접 이끕니다. 산업력이 꾸준히 오르지만 잠재 경제가 낮아집니다', g: { labor: -4 }, econ: -3, tick: () => { if (S.st.ind < 95) A('ind', 0.15); } },
+    { n: '혼합 경제', d: '시장과 국가가 역할을 나눕니다' },
+    { n: '시장 자유화', d: '규제를 풀고 공기업을 민영화합니다. 잠재 경제가 오르고 부채가 줄지만 노동 불만이 쌓입니다', g: { labor: 6 }, econ: 4, tick: () => { S.st.debt = Math.max(0, S.st.debt - 0.5); } },
+  ] },
+  labor: { n: '노동법', lv: [
+    { n: '노동자 보호 강화', d: '해고 요건을 강화하고 노조 권한을 넓힙니다', g: { labor: -8, junior: 1 }, econ: -2 },
+    { n: '현행 노동법', d: '지금의 노동법을 유지합니다' },
+    { n: '노동 유연화', d: '해고와 비정규 고용을 쉽게 합니다', g: { labor: 8, univ: 2 }, econ: 3 },
+  ] },
+  welfare: { n: '복지', lv: [
+    { n: '보편 복지', d: '기본소득에 가까운 보편 급여를 지급합니다. 인구 위기가 누그러지지만 부채가 늘어납니다', g: { labor: -4, univ: -3 }, stab: 2, tick: () => { birthPolicy(0.12); S.st.debt += 1; } },
+    { n: '선별 복지', d: '필요한 사람에게만 지원합니다' },
+    { n: '최소 복지', d: '복지 지출을 크게 줄입니다', g: { labor: 5, relig: 2 }, econ: 1, tick: () => { A('popc', 0.08); S.st.debt = Math.max(0, S.st.debt - 1); } },
+  ] },
+  press: { n: '언론·집회', lv: [
+    { n: '국가보안법 폐지', d: '표현과 결사의 자유를 넓힙니다. 평판이 오르지만 군 소장파가 반발합니다', g: { univ: -5, junior: 4, relig: 2 }, stab: -1, tick: () => A('rep', 0.05) },
+    { n: '국가보안법 유지', d: '지금의 제도를 유지합니다' },
+    { n: '언론 통제', d: '방송과 포털을 정부 심의 아래 둡니다. 겉으로는 조용해지지만 압력이 쌓입니다', g: { univ: 8, dias: 4 }, stab: 3, tick: () => { A('rep', -0.1); P(1); } },
+  ] },
+  service: { n: '병역', lv: [
+    { n: '모병제', d: '직업 군인으로만 군대를 꾸립니다', g: { univ: -5, junior: 3 }, econ: 1, tick: () => { if (S.st.mil > 40) A('mil', -0.2); } },
+    { n: '징병제', d: '지금처럼 모든 남성이 복무합니다' },
+    { n: '총동원 체제', d: '예비군을 상시 동원하고 군수 생산을 늘립니다', g: { univ: 8, labor: 4 }, econ: -2, tick: () => { if (S.st.mil < S.st.ind * 1.25) A('mil', 0.35); if (S.war) A('ws', 0.3); } },
+  ] },
+  migr: { n: '이민', lv: [
+    { n: '개방 이민', d: '이민 문턱을 크게 낮춥니다. 인구 위기가 누그러지지만 종교계가 반발합니다', g: { relig: 4, dias: -3 }, econ: 1, tick: () => A('popc', -0.15) },
+    { n: '제한 이민', d: '지금처럼 필요한 인력만 받습니다' },
+    { n: '이민 폐쇄', d: '외국인 노동자 유입을 막습니다', g: { dias: 4, labor: -2 }, econ: -1, tick: () => { A('popc', 0.08); A('rep', -0.03); } },
+  ] },
+};
+const LAW_ORDER = ['econ', 'labor', 'welfare', 'press', 'service', 'migr'];
+// 각 정당이 바라는 법률 단계
+const PREF = {
+  con: { econ: 2, labor: 2, welfare: 1, press: 1, service: 1, migr: 2 },
+  pro: { econ: 1, labor: 0, welfare: 0, press: 0, service: 1, migr: 0 },
+  mid: { econ: 2, labor: 1, welfare: 1, press: 0, service: 0, migr: 1 },
+  lab: { econ: 0, labor: 0, welfare: 0, press: 0, service: 0, migr: 0 },
+  far: { econ: 1, labor: 2, welfare: 2, press: 2, service: 2, migr: 2 },
+};
+const LEG_TURNS = [1, 17, 33, 49, 65, 81, 97, 113, 129, 145, 161];
+
+function ensurePol() {
+  if (S.pol) return S.pol;
+  const pop = { con: 33, pro: 37, mid: 13, lab: 10, far: 7 };
+  S.pol = { pop, seats: seatsFrom(pop, true), laws: { econ: 1, labor: 1, welfare: 1, press: 1, service: 1, migr: 1 }, bill: null, lastLeg: -1 };
+  return S.pol;
+}
+function seatsFrom(pop, det) {
+  // 지역구가 큰 정당에 유리하게 의석을 몰아준다
+  const w = {}; let t = 0;
+  for (const k in pop) { w[k] = Math.pow(Math.max(0.5, pop[k] + (det ? 0 : rnd(-1.5, 1.5))), 1.35); t += w[k]; }
+  const s = {}; let sum = 0;
+  for (const k in w) { s[k] = Math.floor(w[k] / t * 300); sum += s[k]; }
+  const top = Object.keys(s).sort((a, b) => w[b] - w[a]);
+  for (let i = 0; sum < 300; i++, sum++) s[top[i % top.length]]++;
+  return s;
+}
+const ruling = () => S.gov || 'pro';
+function blocSeats() { const p = ensurePol(), r = ruling(), pa = PARTNER[r]; return p.seats[r] + (pa ? p.seats[pa] : 0); }
+
+// 분기마다 지지율이 움직인다
+function polTarget() {
+  const g = S.g, st = S.st, i = S.ideo, avg = avgG();
+  const t = {
+    con: 31 + i * 0.12 + g.relig * 0.08 + g.junior * 0.06 + g.dias * 0.03 + (S.war ? st.ws * 0.05 : 0),
+    pro: 31 - i * 0.12 + g.univ * 0.06 + g.labor * 0.03,
+    lab: 4 - i * 0.05 + g.labor * 0.1,
+    far: 4 + Math.max(0, i) * 0.12 + g.dias * 0.06 + g.junior * 0.08 + occIds().length * 0.3,
+    mid: 8 + avg * 0.1 + (st.stab < 45 ? 3 : 0),
+  };
+  const r = ruling(), term = Math.max(0, S.turn - (S.flags.lastElect ?? 0));
+  // 집권당은 늘 심판론을 안고 간다
+  t[r] += -2.5 + (st.stab - 50) * 0.15 + (st.econ - 100) * 0.12 + (S.flags.honey || 0) * 0.5 - term * 0.12;
+  t.mid += term * 0.04;
+  if (S.war && S.war.defensive && S.war.turns < 6) t[r] += 4;
+  if (S.war && !S.war.defensive && S.war.turns > 6) { t[r] -= 3; t.lab += 2; }
+  const L = ensurePol().laws;
+  if (L.labor === 2) t.lab += 4; if (L.migr === 0) t.far += 3; if (L.press === 2) t.mid += 2;
+  if (S.flags.polBoost && S.turn < S.flags.polBoost.until) t[S.flags.polBoost.k] += 4;
+  for (const k in t) t[k] = Math.max(2, t[k]);
+  return t;
+}
+function polTick() {
+  const p = ensurePol();
+  if (S.route === 'normal') {
+    const t = polTarget(), tt = Object.values(t).reduce((a, b) => a + b, 0);
+    for (const k in p.pop) p.pop[k] += (t[k] / tt * 100 - p.pop[k]) * 0.1 + rnd(-0.8, 0.8);
+    const s = Object.values(p.pop).reduce((a, b) => a + Math.max(1, b), 0);
+    for (const k in p.pop) p.pop[k] = Math.max(1, p.pop[k]) / s * 100;
+  }
+  // 법률의 분기 효과
+  for (const c of LAW_ORDER) { const l = LAWS[c].lv[p.laws[c]]; if (l.tick) l.tick(); }
+  // 국회 심의 중인 법안
+  if (p.bill && S.turn >= p.bill.due) {
+    const b = p.bill; p.bill = null;
+    if (Math.random() < b.ch) {
+      p.laws[b.c] = b.to; lean(b.to === 0 ? -6 : b.to === 2 ? 6 : (b.from === 0 ? 3 : -3));
+      L(`국회가 「${LAWS[b.c].lv[b.to].n}」 법안을 통과시켰다.`);
+    } else L(`「${LAWS[b.c].lv[b.to].n}」 법안이 국회에서 부결됐다.`);
+  }
+}
+// 법률이 정하는 평형점·경제·안정도 보정
+function lawSum(key) { const p = ensurePol(); let v = 0; for (const c of LAW_ORDER) { const l = LAWS[c].lv[p.laws[c]]; if (l[key]) v += l[key]; } return v; }
+function lawG() { const p = ensurePol(), o = {}; for (const c of LAW_ORDER) { const g = LAWS[c].lv[p.laws[c]].g || {}; for (const k in g) o[k] = (o[k] || 0) + g[k]; } return o; }
+
+// 법안 표결 예상
+function billVote(c, to) {
+  const p = ensurePol(), cur = p.laws[c]; let yes = 0, no = 0, ab = 0;
+  for (const k in p.seats) {
+    const pr = PREF[k][c], dn = Math.abs(to - pr), dc = Math.abs(cur - pr);
+    if (dn < dc) yes += p.seats[k]; else if (dn > dc) no += p.seats[k]; else ab += p.seats[k];
+  }
+  let ch = clamp((yes + ab * 0.4) / 300 * 1.6 - 0.25, 0.05, 0.95);
+  if (PREF[ruling()][c] === to || Math.abs(PREF[ruling()][c] - to) < Math.abs(PREF[ruling()][c] - cur)) ch = Math.min(0.95, ch + 0.1);
+  if (S.route !== 'normal') ch = 1;
+  return { yes, no, ab, ch };
+}
+const billCost = (c, to) => 40 + 15 * Math.abs(to - ensurePol().laws[c]);
+function proposeBill(c, to) {
+  const p = ensurePol(), cost = billCost(c, to);
+  if (p.bill || S.st.pp < cost || S.queue.length) return;
+  A('pp', -cost);
+  p.bill = { c, to, from: p.laws[c], due: S.turn + 2, ch: billVote(c, to).ch };
+  L(`정부가 「${LAWS[c].lv[to].n}」 법안을 국회에 냈다.`);
+  save(); render();
+}
+function campaign() {
+  if (S.st.pp < 30 || (S.cd.campaign || 0) > 0) return;
+  A('pp', -30); S.cd.campaign = 4; S.flags.polBoost = { k: ruling(), until: S.turn + 4 };
+  L(`${PARTIES[ruling()].n}이 전국 순회 정책 설명회를 열었다.`); save(); render();
+}
+function polPP() {
+  if (S.route !== 'normal') return null;
+  const b = blocSeats();
+  if (b >= 180) return ['여당 압도적 과반', 5];
+  if (b >= 151) return ['여당 과반', 2];
+  if (b < 120) return ['여소야대 정국', -5];
+  return ['여소야대', -2];
+}
+
+// 대선: 지지율 차이가 크면 뒤처진 후보는 이길 수 없다
+function presShares() {
+  const p = ensurePol().pop;
+  const s = { con: p.con + p.far * 0.75, pro: p.pro + p.lab * 0.75, mid: p.mid + p.far * 0.25 + p.lab * 0.25 };
+  const t = s.con + s.pro + s.mid; for (const k in s) s[k] = s[k] / t * 100; return s;
+}
+function presOK(k) { const s = presShares(), mx = Math.max(...Object.values(s)); return s[k] >= mx - 7; }
+function presPollDoc(title) {
+  const s = presShares();
+  return { kind: 'poll', title, rows: ['con', 'pro', 'mid'].map(k => [PARTIES[k].n, Math.round(s[k] * 10) / 10, PARTIES[k].col]), foot: '선두와 7%p 넘게 뒤진 후보는 당선될 수 없습니다' };
+}
+function presElect(k) { const p = ensurePol(); p.pop[k] += 4; }
+
+// 총선
+function makeLegElection(id, turn) {
+  const n = 21 + LEG_TURNS.indexOf(turn);
+  EV[id] = {
+    title: `제${n}대 국회의원 선거`, tags: ['KOR'], when: s => s.route === 'normal' && s.turn >= turn && s.turn < turn + 4,
+    doc: () => { const p = ensurePol().pop; return { kind: 'poll', title: '정당 지지율 (선거 직전 조사)', rows: PARTY_ORDER.map(k => [PARTIES[k].n, Math.round(p[k] * 10) / 10, PARTIES[k].col]) }; },
+    text: () => `${S.war ? '포성이 들리는 와중에도 투표소는 열렸다. 후보들은 전쟁을 언제, 어떻게 끝낼지를 놓고 싸웠다.' : '선거 벽보가 붙고, 유세차가 골목을 돌았다.'} 대통령 임기 중간에 치르는 총선은 늘 정권에 대한 중간 성적표였다. ${PARTIES[ruling()].n}은 안정을, 야당들은 심판을 외쳤다.
+
+개표가 끝나면 앞으로 4년 동안 어떤 법이 통과되고 어떤 법이 막힐지가 정해진다.`,
+    opts: [
+      { t: '개표 결과를 지켜봅니다', h: () => `현재 지지율대로 의석이 나뉩니다 · 여당 진영 예상 ${blocSeatsIf()}석`, fx: () => doLegElection() },
+      { t: '마지막 주에 정부 성과를 홍보합니다', h: '정치력 −40 · 여당 지지율 +3 · 관권 선거 논란으로 대학 불만 +3', if: () => S.st.pp >= 40, fx: () => { A('pp', -40); ensurePol().pop[ruling()] += 3; G({ univ: 3 }); doLegElection(); } },
+    ],
+  };
+}
+function blocSeatsIf() { const p = ensurePol(), s = seatsFrom(p.pop, true), r = ruling(), pa = PARTNER[r]; return s[r] + (pa ? s[pa] : 0); }
+function doLegElection() {
+  const p = ensurePol(); p.seats = seatsFrom(p.pop, false); p.lastLeg = S.turn;
+  const r = ruling(), b = blocSeats();
+  L(`총선 결과: ${PARTY_ORDER.filter(k => p.seats[k] > 0).map(k => `${PARTIES[k].n} ${p.seats[k]}석`).join(', ')}. ${b >= 151 ? '여당 진영이 과반을 지켰다.' : '여소야대 국회가 됐다.'}`);
+  Gall(-3);
+}
+LEG_TURNS.forEach((t, i) => makeLegElection('leg' + i, t));
+
+// ================= 보이지 않는 참전 =================
+// 다른 나라가 적을 몰래 돕는다. 드러나지 않지만 적의 저항이 갑자기 거세진다.
+const SPONSOR = {
+  PRK: ['CHN', 'RUS'], MMR: ['CHN'], LAO: ['CHN'], KHM: ['CHN'], PAK: ['CHN'], MNG: ['RUS', 'CHN'], VNM: ['RUS'], KAZ: ['RUS'], UZB: ['RUS'], KGZ: ['RUS'], TJK: ['RUS'], TKM: ['RUS'],
+  TWN: ['JPN'], PHL: ['JPN'], IDN: ['JPN', 'IND'], MYS: ['JPN'], THA: ['JPN', 'CHN'], BGD: ['IND'], NPL: ['IND'], LKA: ['IND'], BTN: ['IND'], AFG: ['PAK', 'RUS'],
+  CHN: ['RUS'], RUS: ['CHN'], JPN: [], IND: ['RUS'],
+};
+function covertCands() {
+  const w = S.war, out = [];
+  for (const E of w.enemies) {
+    for (const P of new Set([...(SPONSOR[E] || []), ...['CHN', 'RUS', 'JPN', 'IND'].filter(x => x !== E && touches(x, [E]))])) {
+      if (w.enemies.includes(P) || !owned(P).length || S.allies[P] || isSubj(P) || (w.covert || []).some(c => c.by === P)) continue;
+      if ((S.rel[P] ?? 0) >= 40) continue;
+      if ((P === 'CHN' && S.align === 'china') || (P === 'RUS' && S.align === 'russia') || (P === 'JPN' && S.align === 'west')) continue;
+      out.push({ by: P, for: E });
+    }
+  }
+  return out;
+}
+function covertTick() {
+  const w = S.war; if (!w) return;
+  w.covert = (w.covert || []).filter(c => !w.enemies.includes(c.by) && owned(c.by).length && w.enemies.includes(c.for));
+  if (w.turns >= 2 && w.covert.length < 2 && Math.random() < diff().covert) {
+    const c = covertCands(); if (c.length) { const x = pick(c); x.since = S.turn; w.covert.push(x); L(`${tagName(x.for)}의 저항이 갑자기 거세졌다. 보급이 어디서 들어오는지는 아직 모른다.`); }
+  }
+  // 국정원이 찾아낸다
+  const hidden = w.covert.filter(c => !c.found);
+  if (hidden.length && !S.queue.includes('covertFound') && Math.random() < 0.12 + S.st.tech * 0.03 + (S.flags.tracing ? 0.02 : 0)) {
+    const c = pick(hidden); c.found = true; S.flags.covertNow = { by: c.by, for: c.for }; S.done.covertFound = false; Q('covertFound');
+  }
+}
+function covertBonus() {
+  const w = S.war; if (!w || !w.covert) return 0;
+  return w.covert.reduce((a, c) => a + natStr(c.by) * 0.1, 0);
+}
+function endCovert(P) { if (S.war && S.war.covert) S.war.covert = S.war.covert.filter(c => c.by !== P); }
+EV.covertFound = {
+  title: '보이지 않는 보급선', tags: () => [S.flags.covertNow ? S.flags.covertNow.by : 'KOR'],
+  doc: () => { const c = S.flags.covertNow || { by: 'RUS', for: 'PRK' }; return { kind: 'memo', head: [['수신', '대통령'], ['발신', '국가정보원 해외정보국'], ['제목', `${tagName(c.for)} 전선 보급 경로 분석 (3급 비밀)`]], rows: [`${tagName(c.for)} 측 포탄 잔해에서 ${tagName(c.by)} 군수공장 제조 번호 확인`, '국경 철도로 야간 화물 열차가 하루 서너 편씩 오감. 화물 신고서는 "농기계"', `${tagName(c.by)} 국적 "군사 고문단" 존재 정황. 통신 감청 내용 일치`], foot: `※ ${tagName(c.by)} 정부는 공식적으로 중립을 유지하고 있음` }; },
+  text: () => { const c = S.flags.covertNow || { by: 'RUS', for: 'PRK' }; return `국정원장은 보고서를 내려놓고 바로 본론으로 들어갔다.
+
+"${josa(tagName(c.for), '이가')} 버티는 이유가 있었습니다. ${josa(tagName(c.by), '이가')} 뒤에서 대 주고 있어요. 탄약, 연료, 정찰 정보까지요. 군복만 안 입었지 사실상 참전입니다."
+
+"증거는 확실합니까."
+
+"공개하면 저쪽은 당연히 부인하겠죠. 근데 위성 사진하고 잔해 사진만 있으면 국제 언론은 알아서 받아 씁니다." 국정원장은 잠깐 말을 끊었다. "다만 이걸 터뜨리면 ${tagName(c.by)} 입장에서는 체면이 걸린 문제가 됩니다. 아예 대놓고 들어올 수도 있어요. 조용히 사람 보내서 거래하는 방법도 있습니다. 대신 뭔가 내줘야 하겠지만요."`; },
+  opts: [
+    { t: '국제사회에 공론화합니다', h: () => { const c = S.flags.covertNow || {}; return `평판 +6 · 전쟁 지지 +8 · ${tagName(c.by)} 관계 −30 · 몰래 하던 지원이 끊깁니다${['CHN', 'RUS'].includes(c.by) ? ` · ${josa(tagName(c.by), '이가')} 대놓고 참전할 수도 있습니다 (25%)` : ''}`; },
+      fx: () => { const c = S.flags.covertNow; if (!c) return; A('rep', 6); A('ws', 8); R(c.by, -30); endCovert(c.by); L(`정부가 ${tagName(c.by)}의 ${tagName(c.for)} 지원 증거를 공개했다.`); if (['CHN', 'RUS'].includes(c.by) && Math.random() < 0.25) { addEnemy(c.by); L(`${josa(tagName(c.by), '이가')} 부인을 멈추고 공개적으로 참전했다.`); } S.flags.covertNow = null; } },
+    { t: '비밀회담으로 중재합니다', h: () => { const c = S.flags.covertNow || {}; return `정치력 −40 · 경제 −1 · ${tagName(c.by)} 관계 +5 · 지원이 조용히 끊깁니다`; }, if: () => S.st.pp >= 40,
+      fx: () => { const c = S.flags.covertNow; if (!c) return; A('pp', -40); A('econ', -1); R(c.by, 5); endCovert(c.by); L(`${josa(tagName(c.by), '과와')} 비공개 접촉. ${josa(tagName(c.for), '으로')} 가던 화물 열차가 멈췄다.`); S.flags.covertNow = null; } },
+    { t: '지금은 모른 척합니다', h: '지원이 계속됩니다 · 나중에 다시 다룰 수 있습니다', fx: () => { const c = S.flags.covertNow; if (c && S.war) (S.war.covert || []).forEach(x => { if (x.by === c.by) x.found = false; }); S.flags.covertNow = null; } },
+  ],
+};
+
+// ================= 인구 구조와 난이도 =================
+// 출산 가능 인구(20~39세) 지수. 2020년을 100으로 둔다.
+// 저출산 대책은 아이를 낳을 사람이 줄어든 만큼 효과가 줄고, 전쟁은 이 세대를 가장 먼저 잃게 만든다.
+const DIFF = {
+  easy: { n: '쉬움', d: '정치력이 넉넉하고, 적이 약하며, 전쟁의 인구 손실이 적습니다. 처음 해 보시는 분께 권합니다', pp: 1.25, en: 0.85, stab: 5, covert: 0.05, loss: 0.6, popc: 0.8 },
+  normal: { n: '보통', d: '처음 설계한 균형입니다', pp: 1, en: 1, stab: 0, covert: 0.1, loss: 1, popc: 1 },
+  hard: { n: '어려움', d: '정치력이 줄고, 적이 강해지며, 다른 나라가 몰래 적을 더 자주 돕습니다. 전쟁의 인구 손실도 큽니다', pp: 0.9, en: 1.12, stab: -4, covert: 0.14, loss: 1.3, popc: 1.15 },
+  vhard: { n: '매우 어려움', d: '모든 것이 부족합니다. 전쟁 한 번이 한 세대를 지울 수 있습니다', pp: 0.8, en: 1.25, stab: -8, covert: 0.18, loss: 1.6, popc: 1.3 },
+};
+const DIFF_ORDER = ['easy', 'normal', 'hard', 'vhard'];
+const diff = () => DIFF[(S && S.diff) || 'normal'] || DIFF.normal;
+
+function ensureDemo() { if (!S.demo) S.demo = { fert: 100, lost: 0 }; return S.demo; }
+// 저출산 대책: 출산 가능 인구가 줄어든 만큼 효과도 줄어든다
+function birthPolicy(v) { const d = ensureDemo(); const eff = v * clamp(d.fert / 100, 0.25, 1.2); S._birth = true; A('popc', -eff); S._birth = false; return eff; }
+const birthEff = () => Math.round(clamp(ensureDemo().fert / 100, 0.25, 1.2) * 100);
+function demoTick() {
+  const d = ensureDemo();
+  // 작은 세대가 차례로 스무 살이 된다
+  d.fert = Math.max(10, d.fert - 0.22);
+  // 젊은 층이 줄수록 인구 위기는 스스로 깊어진다
+  A('popc', Math.max(0, (100 - d.fert) * 0.004) * diff().popc);
+  // 전쟁은 20~30대를 먼저 데려간다
+  const w = S.war;
+  if (w) {
+    let l = w.defensive ? 0.45 : 0.7;
+    if (w.stance === 'mob') l *= 1.6; else if (w.stance === 'off') l *= 1.2;
+    const r = Math.max(1, enemyPower()) / Math.max(1, warPower());
+    l *= clamp(0.6 + r * 0.5, 0.5, 1.8) * diff().loss;
+    if (w.peninsula && KOR_IDS.some(id => !owns(id))) l *= 1.4; // 본토가 전장이 되면 민간인도 죽는다
+    d.fert = Math.max(10, d.fert - l); d.lost += l;
+    A('popc', l * 0.6);
+  }
+}
+// 이민과 귀환은 젊은 사람을 데려온다: 저출산 대책이 아닌데 인구 위기가 줄면 젊은 층이 늘어난 것으로 본다
+function demoOnPopc(v) { if (v < 0 && !S._birth && S.demo) S.demo.fert = Math.min(130, S.demo.fert - v * 0.5); }
+
 // ================= 대사: 사건 인용구 =================
 const EPI = {
   pandemic: ['병은 국경을 묻지 않습니다. 그런데 병이 지나간 다음에 국경을 다시 세우는 건 언제나 사람이에요. 그것도 전보다 더 높게.', '오혜린, 질병관리청장'],
@@ -3163,7 +3544,8 @@ const BLOC = () => {
   const m = {}, W = '#4f86c6', E = '#a8403a', U = '#7d9a5a';
   ['PHL'].forEach(t => m[t] = ['PDTO', W]); if (!S.allies.TWN) m.TWN = ['PDTO 우방', '#6f9fd0']; if (!S.flags.japanDefeated) m.JPN = ['PDTO', W];
   ['CHN', 'PRK', 'SAR'].forEach(t => m[t] = ['동아시아방위구상', E]);
-  m.RUS = S.align === 'russia' ? ['유라시아 안보조약', U] : ['동아시아방위구상', E];
+  // 러시아는 중국 진영이 아니라 자기 조약(유라시아 안보조약)을 이끈다
+  m.RUS = ['유라시아 안보조약', U];
   m.KOR = S.align === 'west' ? ['PDTO', W] : S.align === 'china' ? ['동아시아방위구상', E] : S.align === 'russia' ? ['유라시아 안보조약', U] : S.flags.finland ? ['베이징 밀약', '#8f7fb5'] : ['비동맹 대한민국', '#5fa3a0'];
   m.PYG = ['군벌', '#d38b3c']; m.HAM = ['군벌', '#7c5a38']; m.REB = ['시민혁명위', '#d8b23a'];
   Object.keys(S.allies).forEach(t => { if (S.allies[t]) m[t] = ['대한민국 동맹', '#8fc0e8']; });
@@ -3283,9 +3665,10 @@ function renderSide() {
   if (tab === 'gov') body.innerHTML = renderDecisions();
   else if (tab === 'soc') body.innerHTML = renderSociety();
   else if (tab === 'war') body.innerHTML = renderWar();
+  else if (tab === 'pol') body.innerHTML = renderPolitics();
   else body.innerHTML = `<ol class="log">${S.log.map(l => `<li><time>${l.d}</time>${l.m}</li>`).join('') || '<li>아직 지나간 사건이 없습니다.</li>'}</ol><p class="hint credit">국경: Natural Earth (world-atlas) · 국기: flag-icons (MIT) · 가상 세력 깃발과 모든 등장인물은 창작</p>`;
   const nb = $('#next'); nb.disabled = !!(S.ended || S.queue.length);
-  nb.textContent = S.ended ? '게임 종료' : S.queue.length ? '사건에 답해야 합니다' : `다음 분기로 — ${dateStr(S.turn + 1)}`;
+  nb.textContent = S.ended ? '게임 종료' : S.queue.length ? '먼저 사건을 처리해 주세요' : `다음 분기로 — ${dateStr(S.turn + 1)}`;
 }
 function renderDecisions() {
   const groups = {};
@@ -3305,6 +3688,28 @@ function renderDecisions() {
   });
   return h;
 }
+function renderPolitics() {
+  const p = ensurePol(), r = ruling(), pa = PARTNER[r];
+  let h = '';
+  if (S.route !== 'normal') h += `<p class="hint">지금은 국회가 정상적으로 돌아가지 않습니다. 정부가 낸 법안은 표결 없이 통과됩니다.</p>`;
+  h += `<h3>정당 지지율</h3><div class="parties">` + PARTY_ORDER.map(k => `<div class="${k === r ? 'rule' : ''}"><i style="background:${PARTIES[k].col}"></i><span>${PARTIES[k].n}${k === r ? ' <em>여당</em>' : k === pa ? ' <em>연대</em>' : ''}</span><b>${p.pop[k].toFixed(1)}%</b></div>`).join('') + `</div>`;
+  const b = blocSeats();
+  h += `<h3>국회 의석 · 300석</h3><div class="seats">${PARTY_ORDER.map(k => `<i style="width:${p.seats[k] / 3}%;background:${PARTIES[k].col}" title="${PARTIES[k].n} ${p.seats[k]}석"></i>`).join('')}<u></u></div>
+    <div class="seatl">${PARTY_ORDER.filter(k => p.seats[k]).map(k => `<span><i style="background:${PARTIES[k].col}"></i>${PARTIES[k].s} ${p.seats[k]}</span>`).join('')}</div>
+    <p class="hint">여당 진영 ${b}석 (${b >= 151 ? '과반' : '과반 미달'}). 다음 총선: ${dateStr(LEG_TURNS.find(t => t > S.turn) ?? LAST_TURN)}. 사회 갈래의 불만, 경제, 전쟁, 사회 체제가 지지율을 움직입니다.</p>`;
+  const cd = S.cd.campaign || 0;
+  h += `<div class="decs"><div class="dec"><div class="dh"><b>정부 정책 홍보전</b><span class="cost">30 정치력</span></div><p>네 분기 동안 ${PARTIES[r].n} 지지율이 오릅니다</p><button data-camp ${S.st.pp >= 30 && !cd && S.route === 'normal' ? '' : 'disabled'}>${cd ? `${cd}분기 후 가능` : S.route !== 'normal' ? '지금은 불가' : '실행'}</button></div></div>`;
+  h += `<h3>법률</h3>`;
+  if (p.bill) h += `<p class="hint">국회 심의 중: 「${LAWS[p.bill.c].lv[p.bill.to].n}」 · ${dateStr(p.bill.due)} 표결 · 통과 가능성 ${Math.round(p.bill.ch * 100)}%</p>`;
+  h += `<div class="laws">` + LAW_ORDER.map(c => {
+    const L = LAWS[c], cur = p.laws[c];
+    return `<div class="law"><div class="lh"><b>${L.n}</b><span>${L.lv[cur].n}</span></div>
+      <div class="lsteps">${L.lv.map((lv, i) => `<span class="${i === cur ? 'on' : ''}">${lv.n}</span>`).join('')}</div>
+      ${[cur - 1, cur + 1].filter(i => i >= 0 && i <= 2).map(i => { const v = billVote(c, i), cost = billCost(c, i), ok = !p.bill && S.st.pp >= cost && !S.queue.length;
+        return `<div class="bill"><p><b>${L.lv[i].n}</b> — ${L.lv[i].d}</p><small>찬성 ${v.yes} · 반대 ${v.no} · 기권 ${v.ab} · 통과 가능성 ${Math.round(v.ch * 100)}%</small><button data-bill="${c}:${i}" ${ok ? '' : 'disabled'}>${p.bill ? '심의 중인 법안이 있습니다' : `발의 · ${cost} 정치력`}</button></div>`; }).join('')}</div>`;
+  }).join('') + `</div>`;
+  return h;
+}
 function bar(label, v, cls = '', max = 100, mark = null) {
   return `<div class="bar ${cls}"><div class="bl"><span>${label}</span><b>${Math.round(v)}</b></div><div class="bt"><i style="width:${clamp(v / max * 100, 0, 100)}%"></i>${mark != null ? `<em style="left:${mark}%"></em>` : ''}</div></div>`;
 }
@@ -3316,6 +3721,10 @@ function renderSociety() {
   <h3>민심을 움직이는 것들</h3><p class="hint">안정도는 아래 요인의 합(${Math.round(tg)})을 향해 매 분기 조금씩 움직입니다. 지금 ${Math.round(S.st.stab)}.</p><div class="sf">${sf.filter(f => Math.abs(f[1]) >= 0.5).map(f => `<div><span>${f[0]}</span><b class="${f[1] >= 0 ? 'pos' : 'neg'}">${f[1] >= 0 ? '+' : ''}${Math.round(f[1] * 10) / 10}</b></div>`).join('')}</div>
   <h3>사회 갈래별 불만</h3><p class="hint">불만은 경제·전쟁·임기 피로·진영이 정하는 평형점으로 서서히 돌아갑니다. 담화와 대화는 잠시 끌어내릴 뿐입니다. 세 갈래 이상이 75를 넘으면 ${S.route === 'normal' ? '대규모 촛불이 켜집니다' : '「광장의 귀환」이 시작됩니다'}. 군 소장파가 60 이상이면 군은 시민에게 총을 겨누지 않습니다.</p>`;
   for (const k in S.g) h += bar(GN[k], S.g[k], S.g[k] >= 75 ? 'hot' : S.g[k] >= 55 ? 'warm' : '', 100, 75);
+  { const d = ensureDemo();
+    h += `<h3>인구 구조</h3><p class="hint">출산 가능 인구(20~39세)를 2020년 100으로 놓은 지수입니다. 작은 세대가 자라면서 해마다 줄어들고, 전쟁은 이 세대를 가장 먼저 데려갑니다. 줄어들수록 인구 위기가 스스로 깊어지고, 저출산 대책의 효과도 떨어집니다. 이민과 귀환은 이 지수를 올립니다.</p>`
+      + bar('출산 가능 인구', d.fert, d.fert < 50 ? 'hot' : d.fert < 75 ? 'warm' : '', 130)
+      + `<div class="sf"><div><span>저출산 대책 효과</span><b>${birthEff()}%</b></div><div><span>전쟁으로 잃은 세대</span><b class="${d.lost > 0 ? 'neg' : ''}">${d.lost.toFixed(1)}</b></div><div><span>난이도</span><b>${diff().n}</b></div></div>`; }
   if (S.route !== 'normal' || S.press > 0) h += `<h3>보이지 않는 압력</h3><p class="hint">억누를수록 쌓입니다. 100에 이르면 둑에 금이 갑니다.</p>` + bar('압력', S.press, S.press >= 80 ? 'hot' : 'warm', 100, 100);
   if (S.route === 'glass') {
     const f = S.fac;
@@ -3401,6 +3810,17 @@ function render() {
 }
 
 // ================= 사건 창 =================
+// 인용구는 큰 갈림길에서만 띄운다
+const MAJOR_Q = new Set(['pyeongtaek', 'firesea', 'seoul', 'truce', 'pyongyang', 'candle', 'plaza', 'fireorder', 'gonganNight', 'northfall', 'exile', 'dow']);
+// 속보 자막, 문서, 메시지 같은 사건 앞머리
+function renderDoc(d) {
+  if (!d) return '';
+  if (d.kind === 'wire') return `<div class="doc wire">${d.rows.map(([t, s]) => `<div><time>${t}</time><span>${s}</span></div>`).join('')}</div>`;
+  if (d.kind === 'memo') return `<div class="doc memo"><dl>${d.head.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl><ul>${d.rows.map(r => `<li>${r}</li>`).join('')}</ul>${d.foot ? `<p>${d.foot}</p>` : ''}</div>`;
+  if (d.kind === 'sms') return `<div class="doc sms">${d.rows.map(([w, s, me]) => `<div class="${me ? 'me' : ''}"><small>${w}</small><span>${s}</span></div>`).join('')}</div>`;
+  if (d.kind === 'poll') return `<div class="doc poll"><b>${d.title}</b>${d.rows.map(([n, v, c]) => `<div><span>${n}</span><i style="width:${v}%;background:${c}"></i><em>${v}%</em></div>`).join('')}${d.foot ? `<small>${d.foot}</small>` : ''}</div>`;
+  return '';
+}
 function txt(v) { return typeof v === 'function' ? v() : v; }
 function showNextEvent() {
   const m = $('#modal');
@@ -3414,10 +3834,10 @@ function showNextEvent() {
   const paras = txt(e.text).split(/\n\n+/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
   const opts = e.opts.filter(o => !o.if || o.if()).map((o, i) => `<button class="opt" data-opt="${i}"><b>${txt(o.t)}</b>${txt(o.h) ? `<span>${txt(o.h)}</span>` : ''}</button>`).join('');
   $('#modalcard').innerHTML = `
-    <header><div class="eflags">${(e.tags || []).map(t => FLAGS[t] ? `<img src="${FLAGS[t]}" alt="${tagName(t)}">` : '').join('')}</div>
+    <header><div class="eflags">${(txt(e.tags) || []).map(t => FLAGS[t] ? `<img src="${FLAGS[t]}" alt="${tagName(t)}">` : '').join('')}</div>
     <div><small>${dateStr(S.turn)}</small><h2>${txt(e.title)}</h2></div><button class="peek" id="peek" type="button">지도 보기</button></header>
-    ${e.q ? `<blockquote class="epi">“${e.q[0]}”<cite>${e.q[1]}</cite></blockquote>` : ''}
-    <div class="etext">${paras}</div><div class="opts">${opts}</div>`;
+    ${e.q && MAJOR_Q.has(id) ? `<blockquote class="epi">“${e.q[0]}”<cite>${e.q[1]}</cite></blockquote>` : ''}
+    ${e.doc ? renderDoc(txt(e.doc)) : ''}<div class="etext">${paras}</div><div class="opts">${opts}</div>`;
   m.hidden = false; m.classList.remove('peeking'); $('#unpeek').hidden = true;
   $('#modalcard').scrollTop = 0;
   m.querySelectorAll('.opt').forEach(b => b.onclick = () => chooseOpt(id, +b.dataset.opt));
@@ -3449,7 +3869,7 @@ function showEnding() {
 // ================= 시작 =================
 function startGame(fresh) {
   hideTitle(); $('#app').hidden = false;
-  if (fresh || !S) { S = newState(); Q('pandemic'); L('2020년, 대한민국. 불길이 오른다.'); }
+  if (fresh || !S) { S = newState(); S.diff = pendingDiff || 'normal'; ensureDemo(); ensurePol(); Q('pandemic'); L('질병관리청이 원인불명 호흡기 질환의 국내 첫 확진을 발표했다.'); }
   voiceTurn();
   render(); zoomKorea(0); showNextEvent();
 }
@@ -3457,6 +3877,8 @@ function bindUI() {
   document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => { tab = b.dataset.t; renderSide(); });
   $('#tabbody').addEventListener('click', e => {
     const d = e.target.closest('[data-dec]'); if (d) { doDec(d.dataset.dec); return; }
+    const bl = e.target.closest('[data-bill]'); if (bl) { const [c, to] = bl.dataset.bill.split(':'); proposeBill(c, +to); return; }
+    if (e.target.closest('[data-camp]')) { campaign(); return; }
     const s = e.target.closest('[data-stance]'); if (s && S.war) { S.war.stance = s.dataset.stance; save(); renderSide(); return; }
     const o = e.target.closest('[data-occ]'); if (o) { S.occPol = o.dataset.occ; save(); renderSide(); }
   });
@@ -3486,24 +3908,35 @@ function showTitle() {
   if (sv && !sv.ended) {
     c.disabled = false;
     let st = ''; try { st = ideoStage(sv.ideo || 0).n; } catch (e) { }
-    $('#tcontinfo').textContent = `${dateStr(sv.turn)} · ${sv.korName || '대한민국'}${st ? ' · ' + st : ''}`;
+    $('#tcontinfo').textContent = `${dateStr(sv.turn)} · ${sv.korName || '대한민국'}${st ? ' · ' + st : ''} · ${(DIFF[sv.diff] || DIFF.normal).n}`;
   } else { c.disabled = true; $('#tcontinfo').textContent = sv && sv.ended ? '지난 판은 엔딩을 맞았습니다' : '저장된 판이 없습니다'; }
   const seen = seenEndings(), total = Object.keys(ENDINGS).length;
   $('#tendsinfo').textContent = `${seen.length} / ${total}개의 결말을 보았습니다`;
   (c.disabled ? $('#tnew') : c).focus({ preventScroll: true });
-  startTitleAnim(); rotateQuote(true);
+  startTitleAnim(); fillTicker();
 }
-function hideTitle() { $('#title').hidden = true; if (tAnim) cancelAnimationFrame(tAnim); tAnim = null; clearInterval(tQuoteT); }
-function rotateQuote(first) {
-  const pool = [...Object.values(EV).filter(e => e.q).map(e => e.q), ...Object.values(ENDINGS).filter(e => e.q).map(e => e.q)];
-  const q = $('#tquote');
-  const put = () => { const x = pick(pool); q.style.opacity = 0; setTimeout(() => { q.innerHTML = `“${x[0]}”<cite>${x[1]}</cite>`; q.style.opacity = 1; }, first ? 0 : 1200); first = false; };
-  put(); clearInterval(tQuoteT); tQuoteT = setInterval(put, 9000);
+function hideTitle() { $('#title').hidden = true; if (tAnim) cancelAnimationFrame(tAnim); tAnim = null; }
+const HEADLINES = [
+  '질병관리청 "원인불명 호흡기 질환, 지역사회 전파 단계"',
+  '대구 확진자 하루 새 세 배… 병상 부족',
+  '美 의사당 앞 유혈 충돌… 일부 주 방위군 명령 거부',
+  '평택 험프리스 기지 휴가 장병 복귀 명령',
+  '日 국방군 개편안 중의원 통과',
+  '러시아, 발트해 연안에 병력 증강',
+  '中 푸젠 해안 대규모 상륙 훈련',
+  '유가 사상 최저… 울산·여수 정유업계 감원',
+  '조선중앙TV 정규 방송 사흘째 중단',
+  '서울 주요 대학 비대면 학기 연장',
+];
+function fillTicker() {
+  const line = $('#tline'); if (!line) return;
+  const hs = [...HEADLINES].sort(() => Math.random() - 0.5);
+  line.innerHTML = hs.map(t => `<span>${t}</span>`).join('');
 }
 function initTitle() {
   $('#tcont').onclick = () => { const sv = load(); if (!sv) return; S = Object.assign(newState(), sv); startGame(false); };
-  $('#tnew').onclick = () => { const sv = load(); if (sv && !sv.ended) { $('#tconfirm').hidden = false; $('#tyes').focus(); } else playPrologue(); };
-  $('#tyes').onclick = () => playPrologue();
+  $('#tnew').onclick = () => { const sv = load(); if (sv && !sv.ended) { $('#tconfirm').hidden = false; $('#tyes').focus(); } else chooseDiff(); };
+  $('#tyes').onclick = () => { $('#tconfirm').hidden = true; chooseDiff(); };
   $('#tno').onclick = () => { $('#tconfirm').hidden = true; };
   $('#tends').onclick = () => {
     const seen = new Set(seenEndings());
@@ -3514,90 +3947,60 @@ function initTitle() {
   document.addEventListener('keydown', e => { if ($('#title').hidden) return; if (e.key === 'Escape') { $('#tpanel').hidden = true; $('#tconfirm').hidden = true; } });
   $('#prologue').onclick = () => { if (proDone) proDone(); };
 }
+let pendingDiff = 'normal';
+function chooseDiff() {
+  openTPanel(`<h2>난이도</h2><p class="hint">게임 중에는 바꿀 수 없습니다.</p><div class="diffs">${DIFF_ORDER.map(k => `<button type="button" data-diff="${k}" class="${k === 'normal' ? 'rec' : ''}"><b>${DIFF[k].n}</b><span>${DIFF[k].d}</span><small>정치력 ×${DIFF[k].pp} · 적 전력 ×${DIFF[k].en} · 전쟁 인구 손실 ×${DIFF[k].loss}</small></button>`).join('')}</div>`);
+  document.querySelectorAll('[data-diff]').forEach(b => b.onclick = () => { pendingDiff = b.dataset.diff; $('#tpanel').hidden = true; playPrologue(); });
+}
 function openTPanel(html) { const p = $('#tpanel'); p.innerHTML = `<div class="box">${html}<button class="close" type="button">닫기</button></div>`; p.hidden = false; p.querySelector('.close').onclick = () => p.hidden = true; p.onclick = e => { if (e.target === p) p.hidden = true; }; }
 let proDone = null;
 function playPrologue() {
-  const lines = ['2020년 겨울.', '정체를 알 수 없는 병이 국경을 하나씩 지워 나갔다.', '바다 건너에서는 한 제국이 스스로를 향해 총을 겨눌 준비를 하고 있었다.', '그리고 휴전선 너머에서, 누군가는 오래 기다려온 때가 왔다고 믿었다.', '불길은 아직 보이지 않았다. 그러나 반도는 이미 뜨거워지고 있었다.'];
+  const lines = [['1월 20일', '질병관리청, 원인불명 호흡기 질환 국내 첫 확진 발표'], ['2월 18일', '대구에서 집단 감염. 병상이 하루 만에 찼다'], ['3월 3일', '워싱턴 의사당 앞에서 시위대와 주 방위군이 충돌. 사망자가 나왔다'], ['3월 9일', '평양 조선중앙TV, 정규 방송을 끊고 군가만 내보내기 시작'], ['3월 10일', '새벽 여섯 시 사십 분, 청와대가 긴급 국가안전보장회의를 소집했다']];
   hideTitle();
   const pr = $('#prologue'), box = $('#plines');
-  box.innerHTML = lines.map((l, i) => `<p class="${i === lines.length - 1 ? 'last' : ''}">${l}</p>`).join('');
+  box.innerHTML = lines.map(([d, l], i) => `<p class="${i === lines.length - 1 ? 'last' : ''}"><time>${d}</time><span>${l}</span></p>`).join('');
   pr.hidden = false;
   const ps = [...box.children], timers = [];
   const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  ps.forEach((p, i) => timers.push(setTimeout(() => p.classList.add('on'), reduce ? 0 : 500 + i * 1700)));
+  ps.forEach((p, i) => timers.push(setTimeout(() => p.classList.add('on'), reduce ? 0 : 400 + i * 1300)));
   const finish = () => { timers.forEach(clearTimeout); proDone = null; pr.hidden = true; startGame(true); };
-  timers.push(setTimeout(finish, reduce ? 4000 : 500 + lines.length * 1700 + 2400));
+  timers.push(setTimeout(finish, reduce ? 4000 : 400 + lines.length * 1300 + 2200));
   proDone = finish;
 }
-// 배경: 미리 그린 동아시아 지도 위로 불씨가 날린다
-let tOff = null, tOffSize = null, embers = [];
-function buildTitleMap(W, H) {
-  const off = document.createElement('canvas'); off.width = W; off.height = H;
-  const c = off.getContext('2d');
+// 배경: 상황실 지도 한 장. 움직이지 않는다
+let tOff = null;
+function drawTitleMap(cv) {
+  const W = cv.width, H = cv.height, dpr = Math.min(2, window.devicePixelRatio || 1);
+  const c = cv.getContext('2d');
   const fc = topojson.feature(TOPO, TOPO.objects.p);
-  const land = W > H;
-  const pj = land ? d3.geoMercator().center([121, 37.5]).scale(Math.max(W, H) * 1.55).translate([W * 0.68, H * 0.5]) : d3.geoMercator().center([127.3, 38]).scale(Math.min(H * 0.95, W * 2.1)).translate([W * 0.6, H * 0.21]);
+  const pj = W > H ? d3.geoMercator().center([122, 37.5]).scale(Math.max(W, H) * 1.5).translate([W * 0.7, H * 0.47]) : d3.geoMercator().center([127.3, 38]).scale(Math.min(H * 0.95, W * 2.1)).translate([W * 0.6, H * 0.21]);
   const pa = d3.geoPath(pj, c);
   const kor = f => ORIG[f.id] === 'KOR' || ORIG[f.id] === 'PRK';
-  c.fillStyle = '#07090c'; c.fillRect(0, 0, W, H);
-  // 바다의 미세한 격자
-  c.strokeStyle = 'rgba(200,163,90,0.05)'; c.lineWidth = 1; c.beginPath(); pa(d3.geoGraticule().step([2, 2])()); c.stroke();
-  for (const f of fc.features) { if (kor(f)) continue; c.beginPath(); pa(f); c.fillStyle = '#10161d'; c.fill(); }
-  c.beginPath(); pa(topojson.mesh(TOPO, TOPO.objects.p, (a, b) => a !== b && ORIG[a.id] !== ORIG[b.id])); c.strokeStyle = 'rgba(160,140,110,0.18)'; c.lineWidth = 1; c.stroke();
-  // 반도는 달아오른다
-  c.save(); c.shadowColor = 'rgba(255,90,30,0.9)'; c.shadowBlur = Math.max(W, H) * 0.03;
-  const g = c.createLinearGradient(0, pj([127, 43])[1], 0, pj([127, 33])[1]);
-  g.addColorStop(0, '#5a1a10'); g.addColorStop(0.5, '#a3361a'); g.addColorStop(1, '#e07a2c');
-  for (const f of fc.features) if (kor(f)) { c.beginPath(); pa(f); c.fillStyle = g; c.fill(); }
-  c.restore();
-  c.beginPath(); pa(topojson.mesh(TOPO, TOPO.objects.p, (a, b) => a !== b && kor(a) && kor(b) && ORIG[a.id] !== ORIG[b.id])); c.strokeStyle = 'rgba(255,220,160,0.55)'; c.lineWidth = Math.max(1.5, W / 900); c.setLineDash([6, 4]); c.stroke(); c.setLineDash([]);
-  c.beginPath(); pa(topojson.mesh(TOPO, TOPO.objects.p, (a, b) => a === b)); c.strokeStyle = 'rgba(200,180,150,0.12)'; c.lineWidth = 1; c.stroke();
-  tOffSize = { W, H, cx: pj([127.5, 38])[0], cy: pj([127.5, 38])[1] };
-  return off;
+  c.fillStyle = '#0b0d10'; c.fillRect(0, 0, W, H);
+  c.strokeStyle = 'rgba(255,255,255,0.035)'; c.lineWidth = dpr; c.beginPath(); pa(d3.geoGraticule().step([5, 5])()); c.stroke();
+  for (const f of fc.features) { c.beginPath(); pa(f); c.fillStyle = ORIG[f.id] === 'KOR' ? '#9c3127' : ORIG[f.id] === 'PRK' ? '#6a2a24' : '#171b20'; c.fill(); }
+  c.beginPath(); pa(topojson.mesh(TOPO, TOPO.objects.p, (a, b) => a !== b && ORIG[a.id] !== ORIG[b.id] && !(kor(a) && kor(b)))); c.strokeStyle = 'rgba(200,195,185,0.22)'; c.lineWidth = dpr; c.stroke();
+  c.beginPath(); pa(topojson.mesh(TOPO, TOPO.objects.p, (a, b) => a !== b && kor(a) && kor(b) && ORIG[a.id] !== ORIG[b.id])); c.strokeStyle = 'rgba(255,255,255,0.75)'; c.lineWidth = 1.5 * dpr; c.setLineDash([5 * dpr, 4 * dpr]); c.stroke(); c.setLineDash([]);
+  const cities = [['서울', 126.98, 37.57], ['평양', 125.75, 39.03], ['베이징', 116.4, 39.9], ['도쿄', 139.69, 35.69], ['상하이', 121.47, 31.23], ['블라디보스토크', 131.9, 43.12], ['타이베이', 121.56, 25.04]];
+  c.font = `${12 * dpr}px "IBM Plex Sans KR", sans-serif`; c.textBaseline = 'middle';
+  for (const [n, lo, la] of cities) {
+    const [x, y] = pj([lo, la]); if (x < 0 || y < 0 || x > W || y > H) continue;
+    c.fillStyle = n === '서울' ? '#ffffff' : 'rgba(220,215,205,0.7)';
+    c.fillRect(x - 2.5 * dpr, y - 2.5 * dpr, 5 * dpr, 5 * dpr);
+    c.fillText(n, x + 7 * dpr, y);
+  }
 }
 function startTitleAnim() {
   const cv = $('#tbg'); const dpr = Math.min(2, window.devicePixelRatio || 1);
-  const resize = () => {
+  const draw = () => {
     const W = Math.round(cv.clientWidth * dpr), H = Math.round(cv.clientHeight * dpr);
-    if (!W || !H) return false;
-    cv.width = W; cv.height = H;
-    if (!tOff || tOff.width !== Math.round(W * 1.1)) tOff = buildTitleMap(Math.round(W * 1.1), Math.round(H * 1.1));
-    return true;
+    if (!W || !H) return;
+    if (cv.width === W && cv.height === H && tOff) return;
+    cv.width = W; cv.height = H; tOff = true; drawTitleMap(cv);
   };
-  if (!resize()) return;
-  window.onresize = () => { if (!$('#title').hidden) resize(); };
-  const ctx = cv.getContext('2d');
-  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const spawn = () => ({ x: tOffSize.cx / 1.1 + rnd(-0.25, 0.25) * cv.width, y: cv.height * rnd(0.55, 1.05), vx: rnd(-0.15, 0.35) * dpr, vy: -rnd(0.3, 1.1) * dpr, life: rnd(0.4, 1), r: rnd(0.6, 2.2) * dpr });
-  if (!embers.length) for (let i = 0; i < 90; i++) { const e = spawn(); e.y = rnd(0, cv.height); embers.push(e); }
-  const t0 = performance.now();
-  const frame = now => {
-    const W = cv.width, H = cv.height, t = (now - t0) / 1000;
-    const k = reduce ? 1 : 1 + 0.045 * (0.5 - 0.5 * Math.cos(t / 14));
-    const dx = reduce ? 0 : Math.sin(t / 23) * W * 0.01, dy = reduce ? 0 : Math.cos(t / 31) * H * 0.008;
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.setTransform(k, 0, 0, k, -(tOff.width - W) / 2 * k + dx - (k - 1) * W * 0.3, -(tOff.height - H) / 2 * k + dy - (k - 1) * H * 0.4);
-    ctx.drawImage(tOff, 0, 0);
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    // 반도 위의 맥동하는 열기
-    const pulse = 0.55 + 0.15 * Math.sin(t * 1.3) + 0.05 * Math.sin(t * 3.7);
-    const gx = tOffSize.cx / 1.1, gy = tOffSize.cy / 1.1;
-    const rg = ctx.createRadialGradient(gx, gy, 0, gx, gy, Math.max(W, H) * 0.32);
-    rg.addColorStop(0, `rgba(255,110,40,${0.22 * pulse})`); rg.addColorStop(0.5, `rgba(180,50,20,${0.08 * pulse})`); rg.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = rg; ctx.fillRect(0, 0, W, H);
-    // 불씨
-    for (const e of embers) {
-      if (!reduce) { e.x += e.vx + Math.sin(t * 2 + e.y * 0.01) * 0.2 * dpr; e.y += e.vy; e.life -= 0.0025; }
-      if (e.life <= 0 || e.y < -10) Object.assign(e, spawn());
-      const a = Math.max(0, Math.min(1, e.life)) * (0.6 + 0.4 * Math.sin(t * 8 + e.x));
-      ctx.fillStyle = `rgba(255,${150 + Math.round(70 * e.life)},80,${a})`;
-      ctx.beginPath(); ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2); ctx.fill();
-    }
-    ctx.globalCompositeOperation = 'source-over';
-    if (!reduce) tAnim = requestAnimationFrame(frame);
-  };
-  if (tAnim) cancelAnimationFrame(tAnim);
-  tAnim = requestAnimationFrame(frame);
+  tOff = null; draw();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { tOff = null; if (!$('#title').hidden) draw(); });
+  window.onresize = () => { if (!$('#title').hidden) draw(); };
 }
 
 </script>
